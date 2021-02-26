@@ -1,4 +1,5 @@
 FROM ubuntu:20.04
+MAINTAINER jgam@ufam.edu.br
 
 RUN apt update; \
     echo "slapd slapd/no_configuration boolean true" | debconf-set-selections; \

@@ -1,4 +1,5 @@
 FROM tomcat:6
+MAINTAINER jgam@ufam.edu.br
 
 RUN apt update && apt install -y unzip build-essential openjdk-7-jdk
 

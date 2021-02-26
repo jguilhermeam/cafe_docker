@@ -1,4 +1,5 @@
 FROM tomcat:7-jdk8
+MAINTAINER jgam@ufam.edu.br
 
 ENV JAVA_HOME=/usr/local/openjdk-8
 EXPOSE 8443

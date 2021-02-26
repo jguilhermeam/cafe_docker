@@ -140,8 +140,6 @@
                prefix="localhost_access_log" suffix=".txt"
                pattern="%h %l %u %t &quot;%r&quot; %s %b" />
 
-	<!-- ESTAS LINHAS SAO PARA FUNCIONAR SOB O TRAEFIK (https://traefik.io) -->
-	<Valve className="org.apache.catalina.valves.RemoteIpValve" protocolHeader="X-Forwarded-Proto" internalProxies="10\.\d+\.\d+\.\d+|192\.168\.\d+\.\d+|169\.254\.\d+\.\d+|127\.\d+\.\d+\.\d+|172\.(1[6-9]|2[0-9]|3[0-1])\.\d+\.\d+" />
 	<Context docBase="/opt/shibboleth-idp/edit-webapp/images" path="/idp/images" />
 	<Context docBase="/opt/shibboleth-idp/edit-webapp/api" path="/idp/api" />
 	<Context docBase="/opt/shibboleth-idp/edit-webapp/fonts" path="/idp/fonts" />

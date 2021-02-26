@@ -23,25 +23,29 @@ ldap/files/slapd.conf (base do ldap e usuarios do ldap)
 shibboleth/Dockerfile (senha shibboleth e dominios)
 shibboleth/files/idp.properties.dist (dominio e senha shibboleth)
 shibboleth/files/ldap.properties.dist (credenciais do ldap)
-shibboleth/files/idp-metadata.xml (dominio, nome da IFES, nome e email de contato)
+shibboleth/files/idp-metadata.xml (dominio, certificados, nome da IFES, nome e email de contato)
 shibboleth/files/saml-nameid.properties.dist (salt)
 shibboleth/files/edit-webapp/images/logo-instituicao.png (logo da IFES)
 
-### Arquivos que devem ser adicionados
+### Certificados que devem ser adicionados
 
 ldap/files/cafe.key (chave privada ssl)
 ldap/files/cafe.crt (chave pública ssl)
 shibboleth/files/credentials/idp.key (chave privada ssl CAFe - RNP)
 shibboleth/files/credentials/idp.crt (chave pública ssl CAFe - RNP)
 
-### Demais requisitos
+para gerar certificado ldap - https://wiki.rnp.br/pages/viewpage.action?pageId=69968769
 
-- criar usuário cn=leitor-shib,dc=... no LDAP.
-- editar mensagens nos arquivos da pasta messages
+para gerar certificado do shibboleth - https://wiki.rnp.br/pages/viewpage.action?pageId=69964546#Instala%C3%A7%C3%A3odoShibbolethIdP2.X-3.4.6.3.ShibbolethIdP
+
+
+### Customizar interface
+
+- editar strings e imagens nos arquivos da pasta messages e edit-webapp
 
 ### Banco de dados MySQL
 
-no banco MySQL executar os seguintes comandos para criar e popular os bancos do eid e pcollecta:
+no banco MySQL executar os seguintes comandos para criar e popular os bancos do eid, eid2ldap e pcollecta:
 
 ```console
 docker cp eid/sql/eid-1.3.7.dump cafe_mysql:/
