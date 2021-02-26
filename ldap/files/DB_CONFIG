@@ -1,0 +1,34 @@
+# tamanho cache de memoria para ser usado pelo Berkeley DB para armazenar a base ldap
+# param 1: numero de gigabytes
+# param 2: numero de kbytes a ser utilizado
+# param 3: numero de areas contiguas de memoria a serem alocadas
+# param1 e param2 sao somados para definir o tamanho total do cache
+
+# cache de 128mb
+#set_cachesize 0 134217728 1
+# cache de 256mb
+set_cachesize 0 268435456 1
+# cache de 512mb
+#set_cachesize 0 536870912 1
+# cache de 1gb
+#set_cachesize 0 1073741824 1
+
+# diretorio onde o log sera escrito
+#set_lg_dir              /var/lib/bdb
+# Remove automaticamente os logs que nao sao mais necessarios
+set_flags DB_LOG_AUTOREMOVE
+
+# Numero de arquivos que podem ser bloqueados simultaneamente
+set_lk_max_objects 1500
+# Numero maximo de bloqueios (solicitados e permitidos)
+set_lk_max_locks 1500
+# Numero de processos bloqueantes
+set_lk_max_lockers 1500
+
+# substitui a opcao checkpoint no slapd.conf
+# faz o checkpoint a cada 128K ou 10 minutos
+# 0 = nao forca criacao de checkpoint. altere para DB_FORCE para forcar checkpoints mesmo sem escritas
+#txn_checkpoint 128 10 0
+# usar este flag somente durante um slapadd muito grande
+#set_flags DB_TXN_NOSYNC
+

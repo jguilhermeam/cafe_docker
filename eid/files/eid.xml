@@ -1,0 +1,42 @@
+<Context docBase="/opt/eid-1.3.7/"
+         privileged="true"
+         antiResourceLocking="false"
+         antiJARLocking="false"
+         unpackWAR="false"
+         swallowOutput="true"
+         workDir="work/Catalina/localhost/eid">
+
+  <Realm className="org.apache.catalina.realm.MemoryRealm" />
+
+  <Resource
+    name="jdbc/pCollecta"
+    type="javax.sql.DataSource"
+        validationQuery="SELECT 1"
+        testOnBorrow="true"
+    driverClassName="com.mysql.jdbc.Driver"
+    maxIdle="10"
+    maxWait="5000"
+    username="root"
+    password="SENHA_MYSQL"
+    url="jdbc:mysql://cafe_mysql:3306/pcollecta"
+    maxActive="50"
+    factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory"/>
+
+  <Resource
+    name="jdbc/eid"
+    type="javax.sql.DataSource"
+    validationQuery="SELECT 1"
+        testOnBorrow="true"
+    driverClassName="com.mysql.jdbc.Driver"
+    maxIdle="10"
+    maxWait="5000"
+    username="root"
+    password="SENHA_MYSQL"
+    url="jdbc:mysql://cafe_mysql:3306/eid"
+    maxActive="50"
+    factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory"/>
+
+  <WatchedResource>WEB-INF/web.xml</WatchedResource>
+
+</Context>
+

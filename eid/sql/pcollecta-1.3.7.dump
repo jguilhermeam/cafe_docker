@@ -1,0 +1,1161 @@
+--
+-- Servidor: localhost
+-- Tempo de Geração: Mar 07, 2013 as 10:05 AM
+-- Versão do Servidor: 5.1.61
+-- Versão do PHP: 5.3.3-1ubuntu9.10
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Banco de Dados: `pcollecta`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `AS_PROFILE`
+--
+
+CREATE TABLE `AS_PROFILE` (
+  `ID_PROFILE` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `DT_AUDIT` datetime NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `VERSION` int(11) NOT NULL,
+  `NAME` varchar(50) NOT NULL,
+  `DESCRIPTION` varchar(255) NOT NULL,
+  PRIMARY KEY (`ID_PROFILE`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `AS_PROFILE`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `AS_PROFILE_ROLE`
+--
+
+CREATE TABLE `AS_PROFILE_ROLE` (
+  `ID_PROFILE_ROLE` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_PROFILE` int(10) unsigned NOT NULL,
+  `ID_ROLE` int(10) unsigned NOT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(11) NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  PRIMARY KEY (`ID_PROFILE_ROLE`),
+  KEY `IDX_PROF_ROL_ROLE` (`ID_ROLE`),
+  KEY `IDX_PROF_ROL_PROFILE` (`ID_PROFILE`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `AS_PROFILE_ROLE`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `AS_ROLE`
+--
+
+CREATE TABLE `AS_ROLE` (
+  `ID_ROLE` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(11) NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `NAME` varchar(50) NOT NULL,
+  `DESCRIPTION` varchar(255) NOT NULL,
+  `DEFINITION` varchar(255) NOT NULL,
+  `TYPE` char(1) NOT NULL,
+  PRIMARY KEY (`ID_ROLE`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=53 ;
+
+--
+-- Extraindo dados da tabela `AS_ROLE`
+--
+
+INSERT INTO `AS_ROLE` (`ID_ROLE`, `DT_AUDIT`, `VERSION`, `LOGIN_AUDIT`, `NAME`, `DESCRIPTION`, `DEFINITION`, `TYPE`) VALUES
+(1, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Data Repository', '', 'DataRepository.faces', 'U'),
+(2, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Relational Data Base', '', 'RelationalDataBase.faces', 'U'),
+(3, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'CSV File', '', 'CSVFile.faces', 'U'),
+(4, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'PCollecta WS Search', '', 'PCollectaWSSearch.faces', 'U'),
+(5, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'PCollecta WS', '', 'PCollectaWS.faces', 'U'),
+(6, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Data Repository Search', '', 'DataRepositorySearch.faces', 'U'),
+(7, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'User Search', '', 'UserSearch.faces', 'U'),
+(8, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'User', '', 'User.faces', 'U'),
+(9, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Profile Search', '', 'ProfileSearch.faces', 'U'),
+(10, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Profile', '', 'Profile.faces', 'U'),
+(11, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Approval Group Setting Search', '', 'ApprovalGroupSettingSearch.faces', 'U'),
+(12, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Approval Group Setting', '', 'ApprovalGroupSetting.faces', 'U'),
+(13, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Etl Search', '', 'EtlSearch.faces', 'U'),
+(14, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Etl', '', 'Etl.faces', 'U'),
+(15, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Global Parameter', '', 'GlobalParameter.faces', 'U'),
+(16, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Group Search', '', 'GroupSearch.faces', 'U'),
+(17, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Group', '', 'Group.faces', 'U'),
+(18, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Schedule Search', '', 'ScheduleSearch.faces', 'U'),
+(19, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Schedule', '', 'Schedule.faces', 'U'),
+(20, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Harvest Search', '', 'HarvestSearch.faces', 'U'),
+(21, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Harvest', '', 'Harvest.faces', 'U'),
+(22, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Approval', '', 'Approval.faces', 'U'),
+(23, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Approval Search', '', 'ApprovalSearch.faces', 'U'),
+(24, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Import Process Search', '', 'ImportProcessSearch.faces', 'U'),
+(25, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Role', '', 'Role.faces', 'U'),
+(26, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Import Process', '', 'ImportProcess.faces', 'U'),
+(27, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Mapping Script', '', 'MappingScript.faces', 'U'),
+(28, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Processing Result Search', '', 'ProcessingResultSearch.faces', 'U'),
+(29, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Processing Result', '', 'ProcessingResult.faces', 'U'),
+(30, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Schedule Manager Agent', '', 'ScheduleManagerAgent.faces', 'U'),
+(31, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Key Mapping', '', 'KeyMapping.faces', 'U'),
+(32, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Key Mapping Search', '', 'KeyMappingSearch.faces', 'U'),
+(33, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Invalid Key Mapping', '', 'InvalidKeyMapping.faces', 'U'),
+(34, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Item Summary', '', 'ItemSummary.faces', 'U'),
+(35, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Approval Delegating Search', '', 'ApprovalDelegatingSearch.faces', 'U'),
+(36, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Request Item', '', 'RequestItem.faces', 'U'),
+(37, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Approval Delegating Crud', '', 'ApprovalDelegatingCrud.faces', 'U'),
+(38, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'System Parameter', '', 'SystemParameter.faces', 'U'),
+(39, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Data Repository Query', '', 'DataRepositoryQuery.faces', 'U'),
+(40, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Harvest Monitoring Search', '', 'HarvestMonitoringSearch.faces', 'U'),
+(41, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Harvest Monitoring', '', 'HarvestMonitoring.faces', 'U'),
+(42, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Harvest Monitoring Source Organization', '', 'HarvestMonitoringSourceOrganization.faces', 'U'),
+(43, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Export Process Config', '', 'ExportProcessConfig.faces', 'U'),
+(44, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Import Process Config', '', 'ImportProcessConfig.faces', 'U'),
+(45, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Process Item Search', '', 'ProcessItemSearch.faces', 'U'),
+(46, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Harvest Item Summary', '', 'HarvestItemSummary.faces', 'U'),
+(47, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Request Item Approvals', '', 'RequestItemApprovals.faces', 'U'),
+(48, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Harvester Search', '', 'HarvesterSearch.faces', 'U'),
+(49, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Harvester', '', 'Harvester.faces', 'U'),
+(50, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Web Service Databases Query', '', 'WSDatabasesQuery.faces', 'U'),
+(51, '2009-05-03 00:00:00', 0, 'pcollectaadmin', 'Web Service Request Items by Status Query', '', 'RequestItemWSQuery.faces', 'U'),
+(52, '2012-11-23 00:00:00', 0, 'pcollectaadmin', 'LDAP Directory', '', 'LDAP.faces', 'U');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `AS_USER`
+--
+
+CREATE TABLE `AS_USER` (
+  `ID_USER` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `NAME` varchar(128) NOT NULL,
+  `EMAIL` varchar(255) NOT NULL,
+  `LOGIN` varchar(50) NOT NULL,
+  PRIMARY KEY (`ID_USER`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Extraindo dados da tabela `AS_USER`
+--
+
+INSERT INTO `AS_USER` (`ID_USER`, `DT_AUDIT`, `VERSION`, `LOGIN_AUDIT`, `NAME`, `EMAIL`, `LOGIN`) VALUES
+(1, '2008-11-01 00:00:00', 0, 'DUMP', 'Eid Administrator', '', 'eid');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `AS_USER_PROFILE`
+--
+
+CREATE TABLE `AS_USER_PROFILE` (
+  `ID_USER_PROFILE` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_USER` int(10) unsigned NOT NULL,
+  `ID_PROFILE` int(10) unsigned NOT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  PRIMARY KEY (`ID_USER_PROFILE`),
+  KEY `IDX_USR_PROF_PROFILE` (`ID_PROFILE`),
+  KEY `IDX_USR_PROF_USER` (`ID_USER`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `AS_USER_PROFILE`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_APPROVAL`
+--
+
+CREATE TABLE `PC_APPROVAL` (
+  `ID_APPROVAL` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `DELEGATED_APPROVAL_ID` int(10) unsigned DEFAULT NULL,
+  `ID_WHO_DELEG` int(10) unsigned DEFAULT NULL,
+  `ID_APPROVING` int(10) unsigned NOT NULL,
+  `ID_REQUEST_ITEM` int(10) unsigned NOT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `DATE_APPROVAL` datetime DEFAULT NULL,
+  `MSG` text,
+  `DELEGATING_TYPE` char(1) NOT NULL,
+  `DS_STATUS` char(1) NOT NULL,
+  PRIMARY KEY (`ID_APPROVAL`),
+  KEY `IDX_APPROVAL_APPROVING` (`ID_APPROVING`),
+  KEY `IDX_APPROVAL_WHO_DELEG` (`ID_WHO_DELEG`),
+  KEY `IDX_APPROVAL_REQ_ITEM` (`ID_REQUEST_ITEM`),
+  KEY `IDX_APPROVAL_APPROVAL` (`DELEGATED_APPROVAL_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_APPROVAL`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_AUTHORIZED_HARVESTER`
+--
+
+CREATE TABLE `PC_AUTHORIZED_HARVESTER` (
+  `ID_AUTHORIZED_HARVESTER` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_HARVESTER` int(10) unsigned NOT NULL,
+  `ID_DATA_REPOSITORY` int(10) unsigned NOT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  PRIMARY KEY (`ID_AUTHORIZED_HARVESTER`),
+  KEY `IDX_DATA_REPOS_AUTH_HARVESTER` (`ID_DATA_REPOSITORY`),
+  KEY `IDX_HARVESTER_AUTH_HARVESTER` (`ID_HARVESTER`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_AUTHORIZED_HARVESTER`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_COLLECTING_LOG`
+--
+
+CREATE TABLE `PC_COLLECTING_LOG` (
+  `ID_COLLECTING_LOG` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_REQUEST_ITEM` int(10) unsigned NOT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `COLL_START_DATE` datetime NOT NULL,
+  `COLL_FINISH_DATE` datetime NOT NULL,
+  `TOTAL_RECORDS` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`ID_COLLECTING_LOG`),
+  KEY `PC_COLL_LOG_REQUEST_ITEM` (`ID_REQUEST_ITEM`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_COLLECTING_LOG`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_DATA_REPOSITORY`
+--
+
+CREATE TABLE `PC_DATA_REPOSITORY` (
+  `ID_DATA_REPOSITORY` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_USER` int(10) unsigned DEFAULT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(11) NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `NAME` varchar(100) NOT NULL,
+  `DESCRIPTION` varchar(255) DEFAULT NULL,
+  `REPOSITORY_TYPE` char(1) NOT NULL,
+  `EXTERNAL_NAME` varchar(30) DEFAULT NULL,
+  `DRIVER` varchar(255) DEFAULT NULL,
+  `URL` varchar(255) DEFAULT NULL,
+  `LOGIN` varchar(30) DEFAULT NULL,
+  `PASSWORD` varchar(128) DEFAULT NULL,
+  `PUBLIC_EXPORTING_MAX_ROWS` int(11) DEFAULT NULL,
+  `VISIBILITY` varchar(2) DEFAULT NULL,
+  `DIRECTORY` varchar(255) DEFAULT NULL,
+  `INITIAL_NODE` varchar(255) DEFAULT NULL,
+  `WEB_SERVICE_URL` varchar(255) DEFAULT NULL,
+  `ORG_ACRONYM` varchar(20) DEFAULT NULL,
+  `ORG_ID` int(10) unsigned DEFAULT NULL,
+  `ORG_CITY` varchar(128) DEFAULT NULL,
+  `ORG_STATE` varchar(128) DEFAULT NULL,
+  `ORG_COUNTRY` char(2) DEFAULT NULL,
+  `DS_SCHEMMA` text,
+  `DATABASE_VERSION` varchar(20) DEFAULT NULL,
+  `DATABASE_VERSION_TABLE` varchar(30) DEFAULT NULL,
+  `DATABASE_VERSION_FIELD` varchar(30) DEFAULT NULL,
+  `HOST_ADDRESS` varchar(128) DEFAULT NULL,
+  `PORT` int(10) DEFAULT NULL,
+  `PROTOCOL_VERSION` int(10) DEFAULT NULL,
+  `USE_SSL` char(1) DEFAULT 'N',
+  PRIMARY KEY (`ID_DATA_REPOSITORY`),
+  KEY `IDX_OWNER` (`ID_USER`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Extraindo dados da tabela `PC_DATA_REPOSITORY`
+--
+
+INSERT INTO `PC_DATA_REPOSITORY` (`ID_DATA_REPOSITORY`, `ID_USER`, `DT_AUDIT`, `VERSION`, `LOGIN_AUDIT`, `NAME`, `DESCRIPTION`, `REPOSITORY_TYPE`, `EXTERNAL_NAME`, `DRIVER`, `URL`, `LOGIN`, `PASSWORD`, `PUBLIC_EXPORTING_MAX_ROWS`, `VISIBILITY`, `DIRECTORY`, `INITIAL_NODE`, `WEB_SERVICE_URL`, `ORG_ACRONYM`, `ORG_ID`, `ORG_CITY`, `ORG_STATE`, `ORG_COUNTRY`, `DS_SCHEMMA`, `DATABASE_VERSION`, `DATABASE_VERSION_TABLE`, `DATABASE_VERSION_FIELD`, `HOST_ADDRESS`, `PORT`, `PROTOCOL_VERSION`, `USE_SSL`) VALUES
+(1, 1, '2012-03-14 15:11:32', 0, 'eid', 'Metadiretório', 'Metadiretório EID', 'S', NULL, 'com.mysql.jdbc.Driver', 'jdbc:mysql://localhost/eid', 'root', NULL, NULL, 'PR', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1.0', '', '', NULL, NULL, NULL, 'N');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_ETL`
+--
+
+CREATE TABLE `PC_ETL` (
+  `ID_ETL` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_DATA_REP_SRC` int(10) unsigned NOT NULL,
+  `ID_DATA_REP_TGT` int(10) unsigned NOT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `NAME` varchar(50) NOT NULL,
+  `DESCRIPTION` varchar(255) DEFAULT NULL,
+  `USE_MAPPING` char(1) NOT NULL,
+  `SCRIPT_TYPE` char(3) NOT NULL DEFAULT 'JAV',
+  `QUERY` text,
+  `SOURCE_FILE_NAME` varchar(128) DEFAULT NULL,
+  `TARGET_FILE_NAME` varchar(128) DEFAULT NULL,
+  `TARGET_TABLE` varchar(120) DEFAULT NULL,
+  `DISCARDING_FILTER` text,
+  `CLEANUP_COMMAND` text,
+  `SRC_FIELD_SEPARATOR` char(1) DEFAULT NULL,
+  `TGT_FIELD_SEPARATOR` char(1) DEFAULT NULL,
+  `SRC_DEC_SEPARATOR` char(1) DEFAULT NULL,
+  `TGT_DEC_SEPARATOR` char(1) DEFAULT NULL,
+  `SRC_DATE_FORMAT` varchar(25) DEFAULT NULL,
+  `TGT_DATE_FORMAT` varchar(25) DEFAULT NULL,
+  `SRC_CHAR_SET` varchar(20) DEFAULT NULL,
+  `TGT_CHAR_SET` varchar(20) DEFAULT NULL,
+  `TGT_USE_QUOTES` char(1) DEFAULT NULL,
+  `KEY_CONCILIATION` char(1) NOT NULL,
+  `UPDATE_KEY_CONCIL` char(1) NOT NULL,
+  `CONCILIATION_QUERY` text,
+  `INITIAL_TIME_STAMP` bigint(20) unsigned DEFAULT NULL,
+  `FINAL_TIME_STAMP` bigint(20) unsigned DEFAULT NULL,
+  `NUMBER_JUMP_RECORDS` bigint(20) unsigned DEFAULT NULL,
+  `SEQUENCE_NAME` varchar(120) DEFAULT NULL,
+  `USE_CSV_HEADER` char(1) NOT NULL DEFAULT 'N',
+  `SEARCH_FILTER` text,
+  `SEARCH_BASE` varchar(255) DEFAULT NULL,
+  `SEARCH_SUB_ENTRY` char(1) DEFAULT 'N',
+  PRIMARY KEY (`ID_ETL`),
+  KEY `IDX_ETL_DATA_REP_ORIGIN` (`ID_DATA_REP_SRC`),
+  KEY `IDX_ETL_DATA_REP_DEST` (`ID_DATA_REP_TGT`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_ETL`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_EXECUTION_CONTROL`
+--
+
+CREATE TABLE `PC_EXECUTION_CONTROL` (
+  `ID_EXECUTION_CONTROL` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_SOURCE_ORGANIZATION` int(10) unsigned DEFAULT NULL,
+  `ID_SCHEDULE` int(10) unsigned NOT NULL,
+  `ID_PROCESS_ITEM` int(10) unsigned NOT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `START_DATE` datetime NOT NULL,
+  `FINISH_DATE` datetime DEFAULT NULL,
+  `DS_STATUS` char(2) NOT NULL,
+  `HARVEST_STATUS` char(2) NOT NULL,
+  `TOTAL_RECORDS` int(10) unsigned NOT NULL,
+  `INSERTED_RECORDS` int(10) unsigned NOT NULL,
+  `MESSAGE` text,
+  `INSERTION_ERRORS` int(10) unsigned NOT NULL,
+  `CONCILIATED_RECORDS` int(10) unsigned NOT NULL,
+  `UPDATED_RECORDS` int(10) unsigned NOT NULL,
+  `UPDATED_ERRORS` int(10) unsigned NOT NULL,
+  `DISCARDED_RECORDS` int(10) unsigned NOT NULL,
+  `PROCESSING_NUMBER` int(10) unsigned NOT NULL,
+  `TRANSFER_RATE` int(10) unsigned NOT NULL,
+  `REQUEST_DATE` datetime DEFAULT NULL,
+  `APPROVAL_DATE` datetime DEFAULT NULL,
+  `REQUEST_ID` int(10) unsigned DEFAULT NULL,
+  `COLLECTING_MESSAGE` text,
+  `TMP_TIME_STAMP` bigint(20) unsigned DEFAULT NULL,
+  PRIMARY KEY (`ID_EXECUTION_CONTROL`),
+  KEY `IDX_EX_CONTROL_PROC_ITEM` (`ID_PROCESS_ITEM`),
+  KEY `IDX_EX_CONTROL_SCHEDULE` (`ID_SCHEDULE`),
+  KEY `IDX_EX_CONTROL_SRC_ORGANIZATION` (`ID_SOURCE_ORGANIZATION`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_EXECUTION_CONTROL`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_EXT_FIELD`
+--
+
+CREATE TABLE `PC_EXT_FIELD` (
+  `ID_EXT_FIELD` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_ETL` int(10) unsigned NOT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `NAME` varchar(50) NOT NULL,
+  `DESCRIPTION` varchar(128) DEFAULT NULL,
+  `FIELD_TYPE` char(1) NOT NULL,
+  `SORT_ORDER` int(10) unsigned NOT NULL,
+  `IS_PRIMARY_KEY` char(1) NOT NULL,
+  `OBSOLETE` char(1) NOT NULL,
+  `SIZE` int(10) unsigned DEFAULT NULL,
+  `DECIMALS` int(10) unsigned DEFAULT NULL,
+  `AUTO_INCREMENTAL` char(1) NOT NULL,
+  `MAPPING_SCRIPT` text,
+  `SOURCE_FIELD` varchar(50) DEFAULT NULL,
+  `FK_ETL_ID` int(10) unsigned DEFAULT NULL,
+  `HIDDEN` char(1) NOT NULL,
+  `COMPLEMENTARY` char(1) NOT NULL,
+  `TO_UPDATE` char(1) NOT NULL,
+  `TIME_STAMP_FIELD` char(1) DEFAULT 'N',
+  `IS_FAKE` char(1) NOT NULL,
+  PRIMARY KEY (`ID_EXT_FIELD`),
+  KEY `IDX_EXT_FIELD_ETL` (`ID_ETL`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_EXT_FIELD`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_FIELD`
+--
+
+CREATE TABLE `PC_FIELD` (
+  `ID_FIELD` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_ETL` int(10) unsigned NOT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `NAME` varchar(50) NOT NULL,
+  `DESCRIPTION` varchar(128) DEFAULT NULL,
+  `FIELD_TYPE` char(1) NOT NULL,
+  `SORT_ORDER` int(10) unsigned NOT NULL,
+  `IS_PRIMARY_KEY` char(1) NOT NULL,
+  `OBSOLETE` char(1) NOT NULL,
+  `TIME_STAMP_FIELD` char(1) DEFAULT 'N',
+  PRIMARY KEY (`ID_FIELD`),
+  KEY `IDX_FIELD_ETL` (`ID_ETL`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_FIELD`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_GLOBAL_PARAMETER`
+--
+
+CREATE TABLE `PC_GLOBAL_PARAMETER` (
+  `ID_GLOBAL_PARAMETER` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `NAME` varchar(20) NOT NULL,
+  `VALUE` varchar(128) NOT NULL,
+  PRIMARY KEY (`ID_GLOBAL_PARAMETER`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_GLOBAL_PARAMETER`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_GROUP`
+--
+
+CREATE TABLE `PC_GROUP` (
+  `ID_GROUP` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_OWNER` int(10) unsigned NOT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `NAME` varchar(50) NOT NULL,
+  `DESCRIPTION` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ID_GROUP`),
+  KEY `IDX_USER_GROUP` (`ID_OWNER`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_GROUP`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_HARVEST`
+--
+
+CREATE TABLE `PC_HARVEST` (
+  `ID_HARVEST` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_IMPORT_PROCESS` int(10) unsigned NOT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `NAME` varchar(50) NOT NULL,
+  `DESCRIPTION` varchar(255) DEFAULT NULL,
+  `REQUEST_DATE` datetime NOT NULL,
+  `DATABASE_NAME` varchar(30) NOT NULL,
+  `PRE_APPROVED` char(1) NOT NULL DEFAULT 'N',
+  `TERM_START_DATE` date DEFAULT NULL,
+  `TERM_FINISH_DATE` date DEFAULT NULL,
+  `REQUESTER_NAME` varchar(128) NOT NULL,
+  PRIMARY KEY (`ID_HARVEST`),
+  KEY `IDX_HARVEST_IMP_PROCESS` (`ID_IMPORT_PROCESS`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_HARVEST`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_HARVESTER`
+--
+
+CREATE TABLE `PC_HARVESTER` (
+  `ID_HARVESTER` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `NAME` varchar(50) DEFAULT NULL,
+  `DESCRIPTION` varchar(255) DEFAULT NULL,
+  `IDENTIFICATION` varchar(255) NOT NULL,
+  `ISSUER_IDENTIFICATION` varchar(255) NOT NULL,
+  `CERT_HASH` int(11) NOT NULL,
+  `DS_CERT` text NOT NULL,
+  PRIMARY KEY (`ID_HARVESTER`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_HARVESTER`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_HARVEST_ITEM_SUMMARY`
+--
+
+CREATE TABLE `PC_HARVEST_ITEM_SUMMARY` (
+  `ID_HARVEST_ITEM_SUMMARY` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_PROCESS_ITEM` int(10) unsigned NOT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `NAME` varchar(50) NOT NULL,
+  `DESCRIPTION` text,
+  `QUERY` text NOT NULL,
+  PRIMARY KEY (`ID_HARVEST_ITEM_SUMMARY`),
+  KEY `IDX_HARV_ITEM_SUM_PROC_ITEM` (`ID_PROCESS_ITEM`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_HARVEST_ITEM_SUMMARY`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_IMPORT_PROCESS`
+--
+
+CREATE TABLE `PC_IMPORT_PROCESS` (
+  `ID_IMPORT_PROCESS` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(100) NOT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `DESCRIPTION` varchar(255) DEFAULT NULL,
+  `MODE` char(1) NOT NULL,
+  `RETRY_NUMBER` int(10) unsigned NOT NULL,
+  `INTERVAL_BT_RETRY` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`ID_IMPORT_PROCESS`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_IMPORT_PROCESS`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_ITEM_SUMMARY`
+--
+
+CREATE TABLE `PC_ITEM_SUMMARY` (
+  `ID_ITEM_SUMMARY` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_REQUEST_ITEM` int(10) unsigned NOT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `NAME` varchar(50) NOT NULL,
+  `DESCRIPTION` text,
+  `QUERY` text NOT NULL,
+  PRIMARY KEY (`ID_ITEM_SUMMARY`),
+  KEY `IDX_IT_SUM_REQ_ITEM` (`ID_REQUEST_ITEM`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_ITEM_SUMMARY`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_KEY_MAPPING`
+--
+
+CREATE TABLE `PC_KEY_MAPPING` (
+  `ID_KEY_MAPPING` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_ETL` int(10) unsigned NOT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `SOURCE_ID` varchar(512) NOT NULL,
+  `TARGET_ID` varchar(512) NOT NULL,
+  `OTHER_INFO` text,
+  `HASH_KEY` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID_KEY_MAPPING`),
+  KEY `IDX_KEY_MAPPING_ETL` (`ID_ETL`),
+  KEY `PC_KEY_MAPPING_SOURCE_ID` (`ID_ETL`,`SOURCE_ID`),
+  KEY `PC_KEY_MAPPING_TARGET_ID` (`ID_ETL`,`TARGET_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_KEY_MAPPING`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_MEMBER`
+--
+
+CREATE TABLE `PC_MEMBER` (
+  `ID_MEMBER` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_GROUP` int(10) unsigned NOT NULL,
+  `ID_USER` int(10) unsigned NOT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  PRIMARY KEY (`ID_MEMBER`),
+  KEY `IDX_MEMBER_USER` (`ID_USER`),
+  KEY `IDX_MEMBER_GROUP` (`ID_GROUP`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_MEMBER`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_PARAM_UPDATE`
+--
+
+CREATE TABLE `PC_PARAM_UPDATE` (
+  `ID_PARAM_UPDATE` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_GLOBAL_PARAMETER` int(10) unsigned NOT NULL,
+  `ID_ETL` int(10) unsigned NOT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `UPDATE_TYME` char(1) NOT NULL,
+  `UPDATE_SCRIPT` text NOT NULL,
+  PRIMARY KEY (`ID_PARAM_UPDATE`),
+  KEY `IDX_PARAM_UPDATE_ETL` (`ID_ETL`),
+  KEY `IDX_PARAM_UPD_GBL_PARAM` (`ID_GLOBAL_PARAMETER`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_PARAM_UPDATE`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_PRE_APPROVED_AUTH_HARVESTER`
+--
+
+CREATE TABLE `PC_PRE_APPROVED_AUTH_HARVESTER` (
+  `ID_PRE_APPROVED_AUTH_HARVESTER` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_REQUEST` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`ID_PRE_APPROVED_AUTH_HARVESTER`),
+  KEY `PC_PRE_APP_AUTH_HARVESTER_REQUEST` (`ID_REQUEST`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_PRE_APPROVED_AUTH_HARVESTER`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_PROCESSING_RESULT`
+--
+
+CREATE TABLE `PC_PROCESSING_RESULT` (
+  `ID_PROCESSING_RESULT` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_SOURCE_ORGANIZATION` int(10) unsigned DEFAULT NULL,
+  `ID_SCHEDULE` int(10) unsigned NOT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `DS_STATUS` char(1) NOT NULL,
+  `MESSAGE` text,
+  `START_DATE` datetime DEFAULT NULL,
+  `FINISH_DATE` datetime DEFAULT NULL,
+  `PROCESSING_NUMBER` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`ID_PROCESSING_RESULT`),
+  KEY `IDX_PROC_RESULT_SCHEDULE` (`ID_SCHEDULE`),
+  KEY `IDX_PROC_RESULT_SOURCE_ORG` (`ID_SOURCE_ORGANIZATION`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_PROCESSING_RESULT`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_PROCESS_ITEM`
+--
+
+CREATE TABLE `PC_PROCESS_ITEM` (
+  `ID_PROCESS_ITEM` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_IMPORT_PROCESS` int(10) unsigned NOT NULL,
+  `ID_ETL` int(10) unsigned NOT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `SORT_ORDER` int(10) unsigned NOT NULL,
+  `CLEAN_BEFORE_PROCESS` char(1) NOT NULL,
+  `COMMIT_INTERVAL` int(10) unsigned NOT NULL,
+  `MAX_ERRORS` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`ID_PROCESS_ITEM`),
+  KEY `IDX_PROCESS_ITEM_ETL` (`ID_ETL`),
+  KEY `IDX_PROCESS_ITEM_IMP_PROC` (`ID_IMPORT_PROCESS`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_PROCESS_ITEM`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_PROC_SYNCHRONIZATION`
+--
+
+CREATE TABLE `PC_PROC_SYNCHRONIZATION` (
+  `ID_PROC_SYNCHRONIZATION` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `ID_IMPORT_PROCESS` int(10) unsigned NOT NULL,
+  `ID_SOURCE_ORGANIZATION` int(10) unsigned DEFAULT NULL,
+  `REFRESH_TIME` datetime NOT NULL,
+  PRIMARY KEY (`ID_PROC_SYNCHRONIZATION`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_PROC_SYNCHRONIZATION`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_REQUEST`
+--
+
+CREATE TABLE `PC_REQUEST` (
+  `ID_REQUEST` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_DATA_REPOSITORY` int(10) unsigned NOT NULL,
+  `ID_HARVESTER` int(10) unsigned NOT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `NAME` varchar(60) NOT NULL,
+  `DESCRIPTION` varchar(255) DEFAULT NULL,
+  `DS_STATUS` char(1) NOT NULL,
+  `REQUEST_DATE` datetime NOT NULL,
+  `APPROVAL_DATE` datetime DEFAULT NULL,
+  `COLLECTING_DATE` datetime DEFAULT NULL,
+  `CANCELATION_DATE` datetime DEFAULT NULL,
+  `REQUESTOR_NAME` varchar(128) NOT NULL,
+  `PRE_APPROVED_REQUEST` char(1) NOT NULL DEFAULT 'N',
+  `APPROVED` char(1) NOT NULL DEFAULT 'N',
+  `TERM_START_DATE` date DEFAULT NULL,
+  `TERM_FINISH_DATE` date DEFAULT NULL,
+  `REQUESTED` char(1) NOT NULL DEFAULT 'Y',
+  PRIMARY KEY (`ID_REQUEST`),
+  KEY `IDX_REQUEST_HARVESTER` (`ID_HARVESTER`),
+  KEY `IDX_DATA_REPOS_REQUEST` (`ID_DATA_REPOSITORY`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_REQUEST`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_REQUEST_ITEM`
+--
+
+CREATE TABLE `PC_REQUEST_ITEM` (
+  `ID_REQUEST_ITEM` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_REQUEST` int(10) unsigned NOT NULL,
+  `ID_GROUP` int(10) unsigned DEFAULT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `NAME` varchar(60) NOT NULL,
+  `DESCRIPTION` text,
+  `SORT_ORDER` int(10) unsigned NOT NULL,
+  `DS_STATUS` char(1) NOT NULL,
+  `REQUEST_DATE` datetime NOT NULL,
+  `APPROVAL_DATE` datetime DEFAULT NULL,
+  `CANCELATION_DATE` datetime DEFAULT NULL,
+  `QUERY` text NOT NULL,
+  `MIN_APPROVALS` int(10) unsigned NOT NULL,
+  `DS_HASH` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`ID_REQUEST_ITEM`),
+  KEY `IDX_REQ_ITEM_GROUP` (`ID_GROUP`),
+  KEY `IDX_REQ_ITEM_REQUEST` (`ID_REQUEST`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_REQUEST_ITEM`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_SCHEDULE`
+--
+
+CREATE TABLE `PC_SCHEDULE` (
+  `ID_SCHEDULE` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_HARVEST` int(10) unsigned DEFAULT NULL,
+  `ID_IMPORT_PROCESS` int(10) unsigned DEFAULT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `REPEAT_TYPE` char(1) NOT NULL,
+  `NEXT_EXECUTION` datetime NOT NULL,
+  `DS_STATUS` char(1) NOT NULL,
+  `PROCESSING_NUMBER` int(10) unsigned NOT NULL,
+  `START_ITEM_NUMBER` int(10) unsigned NOT NULL,
+  `FINISH_ITEM_NUMBER` int(10) unsigned NOT NULL,
+  `MINUTE` int(10) unsigned DEFAULT NULL,
+  `LOCAL_SAVE_LOG_FILE` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ID_SCHEDULE`),
+  KEY `IDX_SCHEDULE_IMP_PROCESS` (`ID_IMPORT_PROCESS`),
+  KEY `IDX_SCHEDULE_HARVEST` (`ID_HARVEST`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_SCHEDULE`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_SOURCE_ORGANIZATION`
+--
+
+CREATE TABLE `PC_SOURCE_ORGANIZATION` (
+  `ID_SOURCE_ORGANIZATION` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_DATA_REPOSITORY` int(10) unsigned NOT NULL,
+  `ID_HARVEST` int(10) unsigned NOT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `APPROVAL_DATE` datetime DEFAULT NULL,
+  `REQUEST_ID` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`ID_SOURCE_ORGANIZATION`),
+  KEY `IDX_SOURCE_ORG_HARVEST` (`ID_HARVEST`),
+  KEY `IDX_SOURCE_ORG_DATA_REP` (`ID_DATA_REPOSITORY`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_SOURCE_ORGANIZATION`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_SYSTEM_PARAMETER`
+--
+
+CREATE TABLE `PC_SYSTEM_PARAMETER` (
+  `ID_SYSTEM_PARAMETER` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `DATA_IMAGE_FOLDER` varchar(255) NOT NULL,
+  `SYSTEM_VERSION` varchar(20) NOT NULL,
+  `EMAIL_SERVER` varchar(255) DEFAULT NULL,
+  `EMAIL_LOGIN` varchar(50) DEFAULT NULL,
+  `EMAIL_PASSWORD` varchar(128) DEFAULT NULL,
+  `KEY_STORE_PATH` varchar(255) DEFAULT NULL,
+  `KEY_STORE_PASS` varchar(128) DEFAULT NULL,
+  `TRUST_STORE_PATH` varchar(255) DEFAULT NULL,
+  `TRUST_STORE_PASS` varchar(128) DEFAULT NULL,
+  PRIMARY KEY (`ID_SYSTEM_PARAMETER`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Extraindo dados da tabela `PC_SYSTEM_PARAMETER`
+--
+
+INSERT INTO `PC_SYSTEM_PARAMETER` (`ID_SYSTEM_PARAMETER`, `DT_AUDIT`, `VERSION`, `LOGIN_AUDIT`, `DATA_IMAGE_FOLDER`, `SYSTEM_VERSION`, `EMAIL_SERVER`, `EMAIL_LOGIN`, `EMAIL_PASSWORD`, `KEY_STORE_PATH`, `KEY_STORE_PASS`, `TRUST_STORE_PATH`, `TRUST_STORE_PASS`) VALUES
+(1, '2011-01-07 10:45:28', 0, 'system', 'C:/pcollecta_data_image_folder', '1.0.11', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PC_TIME`
+--
+
+CREATE TABLE `PC_TIME` (
+  `ID_TIME` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `ID_SCHEDULE` int(10) unsigned NOT NULL,
+  `DT_AUDIT` datetime NOT NULL,
+  `VERSION` int(10) unsigned NOT NULL,
+  `LOGIN_AUDIT` varchar(50) NOT NULL,
+  `START_TIME` datetime NOT NULL,
+  `FINISH_TIME` datetime NOT NULL,
+  PRIMARY KEY (`ID_TIME`),
+  KEY `IDX_TIME_SCHEDULE` (`ID_SCHEDULE`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `PC_TIME`
+--
+
+
+--
+-- Restrições para as tabelas dumpadas
+--
+
+--
+-- Restrições para a tabela `AS_PROFILE_ROLE`
+--
+ALTER TABLE `AS_PROFILE_ROLE`
+  ADD CONSTRAINT `AS_PROFILE_ROLE_ibfk_1` FOREIGN KEY (`ID_ROLE`) REFERENCES `AS_ROLE` (`ID_ROLE`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `AS_PROFILE_ROLE_ibfk_2` FOREIGN KEY (`ID_PROFILE`) REFERENCES `AS_PROFILE` (`ID_PROFILE`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para a tabela `AS_USER_PROFILE`
+--
+ALTER TABLE `AS_USER_PROFILE`
+  ADD CONSTRAINT `AS_USER_PROFILE_ibfk_1` FOREIGN KEY (`ID_PROFILE`) REFERENCES `AS_PROFILE` (`ID_PROFILE`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `AS_USER_PROFILE_ibfk_2` FOREIGN KEY (`ID_USER`) REFERENCES `AS_USER` (`ID_USER`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para a tabela `PC_APPROVAL`
+--
+ALTER TABLE `PC_APPROVAL`
+  ADD CONSTRAINT `PC_APPROVAL_ibfk_1` FOREIGN KEY (`ID_APPROVING`) REFERENCES `AS_USER` (`ID_USER`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `PC_APPROVAL_ibfk_2` FOREIGN KEY (`ID_WHO_DELEG`) REFERENCES `AS_USER` (`ID_USER`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `PC_APPROVAL_ibfk_3` FOREIGN KEY (`ID_REQUEST_ITEM`) REFERENCES `PC_REQUEST_ITEM` (`ID_REQUEST_ITEM`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `PC_APPROVAL_ibfk_4` FOREIGN KEY (`DELEGATED_APPROVAL_ID`) REFERENCES `PC_APPROVAL` (`ID_APPROVAL`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para a tabela `PC_AUTHORIZED_HARVESTER`
+--
+ALTER TABLE `PC_AUTHORIZED_HARVESTER`
+  ADD CONSTRAINT `PC_AUTHORIZED_HARVESTER_ibfk_1` FOREIGN KEY (`ID_DATA_REPOSITORY`) REFERENCES `PC_DATA_REPOSITORY` (`ID_DATA_REPOSITORY`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `PC_AUTHORIZED_HARVESTER_ibfk_2` FOREIGN KEY (`ID_HARVESTER`) REFERENCES `PC_HARVESTER` (`ID_HARVESTER`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para a tabela `PC_COLLECTING_LOG`
+--
+ALTER TABLE `PC_COLLECTING_LOG`
+  ADD CONSTRAINT `PC_COLLECTING_LOG_ibfk_1` FOREIGN KEY (`ID_REQUEST_ITEM`) REFERENCES `PC_REQUEST_ITEM` (`ID_REQUEST_ITEM`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para a tabela `PC_DATA_REPOSITORY`
+--
+ALTER TABLE `PC_DATA_REPOSITORY`
+  ADD CONSTRAINT `PC_DATA_REPOSITORY_ibfk_1` FOREIGN KEY (`ID_USER`) REFERENCES `AS_USER` (`ID_USER`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para a tabela `PC_ETL`
+--
+ALTER TABLE `PC_ETL`
+  ADD CONSTRAINT `PC_ETL_ibfk_1` FOREIGN KEY (`ID_DATA_REP_SRC`) REFERENCES `PC_DATA_REPOSITORY` (`ID_DATA_REPOSITORY`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `PC_ETL_ibfk_2` FOREIGN KEY (`ID_DATA_REP_TGT`) REFERENCES `PC_DATA_REPOSITORY` (`ID_DATA_REPOSITORY`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para a tabela `PC_EXECUTION_CONTROL`
+--
+ALTER TABLE `PC_EXECUTION_CONTROL`
+  ADD CONSTRAINT `PC_EXECUTION_CONTROL_ibfk_1` FOREIGN KEY (`ID_PROCESS_ITEM`) REFERENCES `PC_PROCESS_ITEM` (`ID_PROCESS_ITEM`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `PC_EXECUTION_CONTROL_ibfk_2` FOREIGN KEY (`ID_SCHEDULE`) REFERENCES `PC_SCHEDULE` (`ID_SCHEDULE`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `PC_EXECUTION_CONTROL_ibfk_3` FOREIGN KEY (`ID_SOURCE_ORGANIZATION`) REFERENCES `PC_SOURCE_ORGANIZATION` (`ID_SOURCE_ORGANIZATION`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para a tabela `PC_EXT_FIELD`
+--
+ALTER TABLE `PC_EXT_FIELD`
+  ADD CONSTRAINT `PC_EXT_FIELD_ibfk_1` FOREIGN KEY (`ID_ETL`) REFERENCES `PC_ETL` (`ID_ETL`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para a tabela `PC_FIELD`
+--
+ALTER TABLE `PC_FIELD`
+  ADD CONSTRAINT `PC_FIELD_ibfk_1` FOREIGN KEY (`ID_ETL`) REFERENCES `PC_ETL` (`ID_ETL`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para a tabela `PC_GROUP`
+--
+ALTER TABLE `PC_GROUP`
+  ADD CONSTRAINT `PC_GROUP_ibfk_1` FOREIGN KEY (`ID_OWNER`) REFERENCES `AS_USER` (`ID_USER`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para a tabela `PC_HARVEST`
+--
+ALTER TABLE `PC_HARVEST`
+  ADD CONSTRAINT `PC_HARVEST_ibfk_1` FOREIGN KEY (`ID_IMPORT_PROCESS`) REFERENCES `PC_IMPORT_PROCESS` (`ID_IMPORT_PROCESS`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para a tabela `PC_HARVEST_ITEM_SUMMARY`
+--
+ALTER TABLE `PC_HARVEST_ITEM_SUMMARY`
+  ADD CONSTRAINT `PC_HARVEST_ITEM_SUMMARY_ibfk_1` FOREIGN KEY (`ID_PROCESS_ITEM`) REFERENCES `PC_PROCESS_ITEM` (`ID_PROCESS_ITEM`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para a tabela `PC_ITEM_SUMMARY`
+--
+ALTER TABLE `PC_ITEM_SUMMARY`
+  ADD CONSTRAINT `PC_ITEM_SUMMARY_ibfk_1` FOREIGN KEY (`ID_REQUEST_ITEM`) REFERENCES `PC_REQUEST_ITEM` (`ID_REQUEST_ITEM`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para a tabela `PC_KEY_MAPPING`
+--
+ALTER TABLE `PC_KEY_MAPPING`
+  ADD CONSTRAINT `PC_KEY_MAPPING_ibfk_1` FOREIGN KEY (`ID_ETL`) REFERENCES `PC_ETL` (`ID_ETL`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para a tabela `PC_MEMBER`
+--
+ALTER TABLE `PC_MEMBER`
+  ADD CONSTRAINT `PC_MEMBER_ibfk_1` FOREIGN KEY (`ID_USER`) REFERENCES `AS_USER` (`ID_USER`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `PC_MEMBER_ibfk_2` FOREIGN KEY (`ID_GROUP`) REFERENCES `PC_GROUP` (`ID_GROUP`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para a tabela `PC_PARAM_UPDATE`
+--
+ALTER TABLE `PC_PARAM_UPDATE`
+  ADD CONSTRAINT `PC_PARAM_UPDATE_ibfk_1` FOREIGN KEY (`ID_ETL`) REFERENCES `PC_ETL` (`ID_ETL`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `PC_PARAM_UPDATE_ibfk_2` FOREIGN KEY (`ID_GLOBAL_PARAMETER`) REFERENCES `PC_GLOBAL_PARAMETER` (`ID_GLOBAL_PARAMETER`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para a tabela `PC_PRE_APPROVED_AUTH_HARVESTER`
+--
+ALTER TABLE `PC_PRE_APPROVED_AUTH_HARVESTER`
+  ADD CONSTRAINT `PC_PRE_APPROVED_AUTH_HARVESTER_ibfk_1` FOREIGN KEY (`ID_REQUEST`) REFERENCES `PC_REQUEST` (`ID_REQUEST`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para a tabela `PC_PROCESSING_RESULT`
+--
+ALTER TABLE `PC_PROCESSING_RESULT`
+  ADD CONSTRAINT `PC_PROCESSING_RESULT_ibfk_1` FOREIGN KEY (`ID_SCHEDULE`) REFERENCES `PC_SCHEDULE` (`ID_SCHEDULE`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `PC_PROCESSING_RESULT_ibfk_2` FOREIGN KEY (`ID_SOURCE_ORGANIZATION`) REFERENCES `PC_SOURCE_ORGANIZATION` (`ID_SOURCE_ORGANIZATION`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para a tabela `PC_PROCESS_ITEM`
+--
+ALTER TABLE `PC_PROCESS_ITEM`
+  ADD CONSTRAINT `PC_PROCESS_ITEM_ibfk_1` FOREIGN KEY (`ID_ETL`) REFERENCES `PC_ETL` (`ID_ETL`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `PC_PROCESS_ITEM_ibfk_2` FOREIGN KEY (`ID_IMPORT_PROCESS`) REFERENCES `PC_IMPORT_PROCESS` (`ID_IMPORT_PROCESS`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para a tabela `PC_REQUEST`
+--
+ALTER TABLE `PC_REQUEST`
+  ADD CONSTRAINT `PC_REQUEST_ibfk_1` FOREIGN KEY (`ID_HARVESTER`) REFERENCES `PC_HARVESTER` (`ID_HARVESTER`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `PC_REQUEST_ibfk_2` FOREIGN KEY (`ID_DATA_REPOSITORY`) REFERENCES `PC_DATA_REPOSITORY` (`ID_DATA_REPOSITORY`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para a tabela `PC_REQUEST_ITEM`
+--
+ALTER TABLE `PC_REQUEST_ITEM`
+  ADD CONSTRAINT `PC_REQUEST_ITEM_ibfk_1` FOREIGN KEY (`ID_GROUP`) REFERENCES `PC_GROUP` (`ID_GROUP`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `PC_REQUEST_ITEM_ibfk_2` FOREIGN KEY (`ID_REQUEST`) REFERENCES `PC_REQUEST` (`ID_REQUEST`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para a tabela `PC_SCHEDULE`
+--
+ALTER TABLE `PC_SCHEDULE`
+  ADD CONSTRAINT `PC_SCHEDULE_ibfk_1` FOREIGN KEY (`ID_IMPORT_PROCESS`) REFERENCES `PC_IMPORT_PROCESS` (`ID_IMPORT_PROCESS`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `PC_SCHEDULE_ibfk_2` FOREIGN KEY (`ID_HARVEST`) REFERENCES `PC_HARVEST` (`ID_HARVEST`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para a tabela `PC_SOURCE_ORGANIZATION`
+--
+ALTER TABLE `PC_SOURCE_ORGANIZATION`
+  ADD CONSTRAINT `PC_SOURCE_ORGANIZATION_ibfk_1` FOREIGN KEY (`ID_HARVEST`) REFERENCES `PC_HARVEST` (`ID_HARVEST`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `PC_SOURCE_ORGANIZATION_ibfk_2` FOREIGN KEY (`ID_DATA_REPOSITORY`) REFERENCES `PC_DATA_REPOSITORY` (`ID_DATA_REPOSITORY`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Restrições para a tabela `PC_TIME`
+--
+ALTER TABLE `PC_TIME`
+  ADD CONSTRAINT `PC_TIME_ibfk_1` FOREIGN KEY (`ID_SCHEDULE`) REFERENCES `PC_SCHEDULE` (`ID_SCHEDULE`) ON DELETE NO ACTION ON UPDATE NO ACTION;

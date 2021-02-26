@@ -1,0 +1,26 @@
+idp.additionalProperties= /conf/ldap.properties, /conf/saml-nameid.properties, /conf/services.properties
+
+idp.entityID= https://DOMINIO.example.com/idp/shibboleth
+
+idp.scope= example.com
+
+idp.sealer.storeResource= %{idp.home}/credentials/sealer.jks
+idp.sealer.versionResource= %{idp.home}/credentials/sealer.kver
+idp.sealer.storePassword= SENHA_SHIB
+idp.sealer.keyPassword= SENHA_SHIB
+
+idp.signing.key= %{idp.home}/credentials/idp.key
+idp.signing.cert= %{idp.home}/credentials/idp.crt
+idp.encryption.key= %{idp.home}/credentials/idp.key
+idp.encryption.cert= %{idp.home}/credentials/idp.crt
+
+idp.authn.flows= Password
+
+idp.status.accessPolicy= AccessByIPAddress
+idp.resolvertest.accessPolicy= AccessByIPAddress
+idp.reload.accessPolicy= AccessByIPAddress
+
+idp.ui.fallbackLanguages= pt-br,en
+
+idp.cafe.computedIDsalt = vYsJhsj/s+xTusoy88aHZrbvfwyyRWGFLKjzO2O1vpc=
+

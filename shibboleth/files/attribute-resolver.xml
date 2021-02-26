@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+rev 1 - Release inicial
+rev 2 - Adicionou o atributo id="transientId"
+rev 3 - Correção da resolução do atributo uidMD5
+rev 4 - Correção da resolução do atributo eduPersonPrincipalName
+rev 5 - Sanitização do arquivo e adequação ao Shibboleth 3
+-->
+
+<resolver:AttributeResolver
+        xmlns:resolver="urn:mace:shibboleth:2.0:resolver"
+        xmlns:pc="urn:mace:shibboleth:2.0:resolver:pc"
+        xmlns:ad="urn:mace:shibboleth:2.0:resolver:ad"
+        xmlns:dc="urn:mace:shibboleth:2.0:resolver:dc"
+        xmlns:enc="urn:mace:shibboleth:2.0:attribute:encoder"
+        xmlns:sec="urn:mace:shibboleth:2.0:security"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="urn:mace:shibboleth:2.0:resolver http://shibboleth.net/schema/idp/shibboleth-attribute-resolver.xsd
+                                                urn:mace:shibboleth:2.0:resolver:pc http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-pc.xsd
+                                                urn:mace:shibboleth:2.0:resolver:ad http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-ad.xsd
+                                                urn:mace:shibboleth:2.0:resolver:dc http://shibboleth.net/schema/idp/shibboleth-attribute-resolver-dc.xsd
+                                                urn:mace:shibboleth:2.0:attribute:encoder http://shibboleth.net/schema/idp/shibboleth-attribute-encoder.xsd
+                                                urn:mace:shibboleth:2.0:security http://shibboleth.net/schema/idp/shibboleth-security.xsd">
+
+        <!-- ========================================== -->
+        <!-- DEFINICAO DE ATRIBUTOS                     -->
+        <!-- ========================================== -->
+
+        <!-- CAFe - uid -->
+        <resolver:AttributeDefinition id="uid" xsi:type="ad:Simple" sourceAttributeID="%{idp.authn.LDAP.returnAttributes}">
+                <resolver:Dependency ref="myLDAP" />
+                <resolver:AttributeEncoder xsi:type="enc:SAML1String" name="urn:mace:dir:attribute-def:uid" encodeType="false" />
+                <resolver:AttributeEncoder xsi:type="enc:SAML2String" name="urn:oid:0.9.2342.19200300.100.1.1" friendlyName="uid" encodeType="false" />
+        </resolver:AttributeDefinition>
+
+        <!-- CAFe - uidMD5 -->
+        <resolver:AttributeDefinition xsi:type="Script" xmlns="urn:mace:shibboleth:2.0:resolver:ad"
+                                                                id="uidMD5"
+                                                                sourceAttributeID="%{idp.authn.LDAP.returnAttributes}">
+                <resolver:Dependency ref="myLDAP" />
+                <Script><![CDATA[
+                                uidMD5.getValues().clear();
+                                logger = Java.type("org.slf4j.LoggerFactory").getLogger("net.shibboleth.idp.attribute");
+                                if (typeof %{idp.authn.LDAP.returnAttributes} != "undefined" && %{idp.authn.LDAP.returnAttributes} != null ){
+                                        localpart = org.apache.commons.codec.digest.DigestUtils.md5Hex(%{idp.authn.LDAP.returnAttributes}.getValues().get(0));
+                                        uidMD5.getValues().add(localpart);
+                                        logger.info("%{idp.authn.LDAP.returnAttributes}: "+%{idp.authn.LDAP.returnAttributes}.getValues().get(0)+" md5: "+localpart);
+                                }
+                ]]></Script>
+        </resolver:AttributeDefinition>
+
+        <!-- CAFe - eduPersonPrincipalName -->
+        <resolver:AttributeDefinition id="eduPersonPrincipalName" xsi:type="ad:Scoped" scope="%{idp.scope}" sourceAttributeID="uidMD5">
+                <resolver:Dependency ref="uidMD5" />
+                <resolver:AttributeEncoder xsi:type="enc:SAML1ScopedString" name="urn:mace:dir:attribute-def:eduPersonPrincipalName" encodeType="false" />
+                <resolver:AttributeEncoder xsi:type="enc:SAML2ScopedString" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.6" friendlyName="eduPersonPrincipalName" encodeType="false" />
+        </resolver:AttributeDefinition>
+
+        <!-- CAFe - brEduAffiliationType -->
+        <resolver:AttributeDefinition id="brEduAffiliationType" xsi:type="ad:Simple" sourceAttributeID="brEduAffiliationType">
+                <resolver:Dependency ref="ldapBrEduPerson" />
+                <resolver:AttributeEncoder xsi:type="enc:SAML1String" name="urn:mace:rnp.br:attribute-def:brEduAffiliationType" encodeType="false" />
+                <resolver:AttributeEncoder xsi:type="enc:SAML2String" name="urn:oid:1.3.6.1.4.1.15996.100.1.1.2.1" friendlyName="brEduAffiliationType" encodeType="false" />
+        </resolver:AttributeDefinition>
+
+        <!-- CAFe - brEduAffiliationType -->
+        <resolver:AttributeDefinition id="eduPersonAffiliation" xsi:type="ad:Simple" sourceAttributeID="brEduAffiliationType">
+                <resolver:Dependency ref="ldapBrEduPerson" />
+                <resolver:AttributeEncoder xsi:type="enc:SAML1String" name="urn:mace:dir:attribute-def:eduPersonAffiliation" encodeType="false" />
+                <resolver:AttributeEncoder xsi:type="enc:SAML2String" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.1" friendlyName="eduPersonAffiliation" encodeType="false" />
+        </resolver:AttributeDefinition>
+
+        <!-- CAFe - eduPersonAffiliation -->
+        <!-- Exemplo de mapeamento de atributo -->
+        <!--
+        <resolver:AttributeDefinition id="eduPersonAffiliation" xsi:type="Mapped" xmlns="urn:mace:shibboleth:2.0:resolver:ad"
+                                                                sourceAttributeID="brEduAffiliationType">
+                <resolver:Dependency ref="ldapBrEduPerson" />
+                <resolver:AttributeEncoder xsi:type="enc:SAML1String" name="urn:mace:dir:attribute-def:eduPersonAffiliation"/>
+                <resolver:AttributeEncoder xsi:type="enc:SAML2String" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.1" friendlyName="eduPersonAffiliation"/>
+
+                <ad:DefaultValue passThru="true" />
+                <ad:ValueMap>
+                        <ad:ReturnValue>affiliate</ad:ReturnValue>
+                        <ad:SourceValue>other</ad:SourceValue>
+                        <ad:SourceValue>position</ad:SourceValue>
+                        <ad:SourceValue>scholarshipAwardee</ad:SourceValue>
+                </ad:ValueMap>
+        </resolver:AttributeDefinition>
+        -->
+
+        <!-- CAFe - commonName -->
+        <resolver:AttributeDefinition id="commonName" xsi:type="ad:Simple" sourceAttributeID="cn">
+                <resolver:Dependency ref="myLDAP" />
+                <resolver:AttributeEncoder xsi:type="enc:SAML1String" name="urn:mace:dir:attribute-def:cn" encodeType="false" />
+                <resolver:AttributeEncoder xsi:type="enc:SAML2String" name="urn:oid:2.5.4.3" friendlyName="cn" encodeType="false" />
+        </resolver:AttributeDefinition>
+
+        <!-- CAFe - surName -->
+        <resolver:AttributeDefinition id="surName" xsi:type="ad:Simple" sourceAttributeID="sn">
+                <resolver:Dependency ref="myLDAP" />
+                <resolver:AttributeEncoder xsi:type="enc:SAML1String" name="urn:mace:dir:attribute-def:sn" encodeType="false" />
+                <resolver:AttributeEncoder xsi:type="enc:SAML2String" name="urn:oid:2.5.4.4" friendlyName="sn" encodeType="false" />
+        </resolver:AttributeDefinition>
+
+        <!-- CAFe - mail -->
+        <resolver:AttributeDefinition id="mail" xsi:type="ad:Simple" sourceAttributeID="mail">
+                <resolver:Dependency ref="myLDAP" />
+                <resolver:AttributeEncoder xsi:type="enc:SAML1String" name="urn:mace:dir:attribute-def:mail" encodeType="false" />
+                <resolver:AttributeEncoder xsi:type="enc:SAML2String" name="urn:oid:0.9.2342.19200300.100.1.3" friendlyName="mail" encodeType="false" />
+        </resolver:AttributeDefinition>
+
+        <!-- CAFe - eduPersonTargetedID -->
+        <resolver:AttributeDefinition id="eduPersonTargetedID" xsi:type="ad:SAML2NameID" nameIdFormat="urn:oasis:names:tc:SAML:2.0:nameid-format:persistent" sourceAttributeID="computedID">
+                <resolver:Dependency ref="computedID" />
+                <resolver:AttributeEncoder xsi:type="enc:SAML1XMLObject" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.10" />
+                <resolver:AttributeEncoder xsi:type="enc:SAML2XMLObject" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.10" friendlyName="eduPersonTargetedID" />
+        </resolver:AttributeDefinition>
+
+        <!-- CAFe - eduPersonEntitlement -->
+        <resolver:AttributeDefinition id="eduPersonEntitlement" xsi:type="ad:Simple" sourceAttributeID="eduPersonEntitlement">
+                <resolver:Dependency ref="staticAttributes" />
+                <resolver:AttributeEncoder xsi:type="enc:SAML1String" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.7" />
+                <resolver:AttributeEncoder xsi:type="enc:SAML2String" name="urn:oid:1.3.6.1.4.1.5923.1.1.1.7" friendlyName="eduPersonEntitlement" />
+        </resolver:AttributeDefinition>
+
+        <!-- ========================================== -->
+        <!-- DEFINICAO DE DATACONNECTORS                -->
+        <!-- ========================================== -->
+
+        <resolver:DataConnector id="myLDAP" xsi:type="dc:LDAPDirectory"
+                ldapURL="%{idp.attribute.resolver.LDAP.ldapURL}"
+                baseDN="%{idp.attribute.resolver.LDAP.baseDN}"
+                principal="%{idp.attribute.resolver.LDAP.bindDN}"
+                principalCredential="%{idp.attribute.resolver.LDAP.bindDNCredential}"
+                useStartTLS="%{idp.attribute.resolver.LDAP.useStartTLS:true}">
+                <dc:FilterTemplate>
+                        <![CDATA[
+                                %{idp.attribute.resolver.LDAP.searchFilter}
+                        ]]>
+                </dc:FilterTemplate>
+                <dc:ReturnAttributes>%{idp.authn.LDAP.returnAttributes} cn sn mail eduPersonPrincipalName</dc:ReturnAttributes>
+        </resolver:DataConnector>
+
+        <resolver:DataConnector id="ldapBrEduPerson" xsi:type="dc:LDAPDirectory"
+                ldapURL="%{idp.attribute.resolver.LDAP.ldapURL}"
+                baseDN="%{idp.attribute.resolver.LDAP.baseDN}"
+                principal="%{idp.attribute.resolver.LDAP.bindDN}"
+                principalCredential="%{idp.attribute.resolver.LDAP.bindDNCredential}"
+                useStartTLS="%{idp.attribute.resolver.LDAP.useStartTLS:true}">
+                <dc:FilterTemplate>
+                        <![CDATA[
+                                (&(&(%{idp.authn.LDAP.returnAttributes}:dn:=$requestContext.principalName)(brEduAffiliation=*))(&(brEntranceDate=*)(!(brExitDate=*))))
+                        ]]>
+                </dc:FilterTemplate>
+                <dc:ReturnAttributes>brEduAffiliationType</dc:ReturnAttributes>
+        </resolver:DataConnector>
+
+        <resolver:DataConnector id="computedID" xsi:type="dc:ComputedId"
+                generatedAttributeID="computedID"
+                sourceAttributeID="%{idp.authn.LDAP.returnAttributes}"
+                salt="%{idp.cafe.computedIDsalt}">
+                <resolver:Dependency ref="myLDAP" />
+        </resolver:DataConnector>
+
+        <resolver:DataConnector id="staticAttributes" xsi:type="dc:Static">
+                <dc:Attribute id="eduPersonEntitlement">
+                        <dc:Value>urn:mace:rediris.es:entitlement:wiki:tfemc2</dc:Value>
+                </dc:Attribute>
+        </resolver:DataConnector>
+
+</resolver:AttributeResolver>
+

@@ -1,0 +1,635 @@
+-- phpMyAdmin SQL Dump
+-- version 3.3.7deb5build0.10.10.1
+-- http://www.phpmyadmin.net
+--
+-- Servidor: localhost
+-- Tempo de GeraÃ§Ã£o: Mai 18, 2011 as 02:02 PM
+-- VersÃ£o do Servidor: 5.1.49
+-- VersÃ£o do PHP: 5.3.3-1ubuntu9.5
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Banco de Dados: `eid`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `TBL_CLASS_DEF`
+--
+
+CREATE TABLE  `TBL_CLASS_DEF` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `classVersion` varchar(255) DEFAULT NULL,
+  `completeName` varchar(255) DEFAULT NULL,
+  `deduplicationAlgorithm` varchar(255) DEFAULT NULL,
+  `definition` text,
+  `description` varchar(255) DEFAULT NULL,
+  `multiplicityAux` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `tableName` varchar(255) DEFAULT NULL,
+  `deduplicationClassName` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Extraindo dados da tabela `TBL_CLASS_DEF`
+--
+
+INSERT INTO `TBL_CLASS_DEF` (`id`, `classVersion`, `completeName`, `deduplicationAlgorithm`, `definition`, `description`, `multiplicityAux`, `name`, `tableName`, `deduplicationClassName`) VALUES
+(1, '1.0', 'Telefone de um indivíduo', '', '<?xml version="1.0" encoding="UTF-8"?>\r\n\r\n<class name="Telefone" class-version="1.0" schema-version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\r\n\r\n	<complete-name>Telefone de um indivíduo</complete-name>\r\n\r\n	<description>Define os atributos para telefones de contato</description>\r\n\r\n	<attributes-def>\r\n\r\n		<attribute-def name="codigoArea" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Código de área do telefone</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="numero" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Número do telefone</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="tipo" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Tipo do telefone (residencial, comercial, celular, fax, VOIP)</description>\r\n\r\n		</attribute-def>\r\n\r\n	</attributes-def>\r\n\r\n</class>', 'Define os atributos para telefones de contato', 'many', 'Telefone', 'TBL_SVC_TELEFONE', ''),
+(2, '1.0', 'Dados de técnico', '', '<?xml version="1.0" encoding="UTF-8"?>\r\n\r\n<class name="Tecnico" class-version="1.0" schema-version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\r\n\r\n	<complete-name>Dados de técnico</complete-name>\r\n\r\n	<description>Dados relativos a um profissional técnico na instituição</description>\r\n\r\n	<attributes-def>\r\n\r\n		<attribute-def name="siape" type="java.lang.Long" use="optional" multiplicity="1">\r\n\r\n			<description>Número de inscrição no SIAPE</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="dataIngresso" type="java.util.Date" use="optional" multiplicity="1">\r\n\r\n			<description>Data de ingresso no serviço público</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="dataAdmissao" type="java.util.Date" use="optional" multiplicity="1">\r\n\r\n			<description>Data de admissão</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="dataAfastamento" type="java.util.Date" use="optional" multiplicity="1">\r\n\r\n			<description>Data de afastamento</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="estadoVinculo" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Estado do vínculo do funcionário (ativo, afastado, aposentado)</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="funcaoPrincipal" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Função principal do funcionário na instituição</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="nivelCapacitacao" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Nível de capacitação (ensino básico, ensino médio, superior, aperfeiçoamento, especialização, mestrado, doutorado)</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="classe" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Classe</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="padrao" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Padrao</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="lotacao" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Lotação de origem do técnico</description>\r\n\r\n		</attribute-def>\r\n\r\n	</attributes-def>\r\n\r\n</class>', 'Dados relativos a um profissional técnico na instituição', 'many', 'Tecnico', 'TBL_SVC_TECNICO', ''),
+(3, '1.0', 'Dados de um professor', '', '<?xml version="1.0" encoding="UTF-8"?>\r\n\r\n<class name="Professor" class-version="1.0" schema-version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\r\n\r\n	<complete-name>Dados de um professor</complete-name>\r\n\r\n	<description>Dados relativos a um professor na instituição</description>\r\n\r\n	<attributes-def>\r\n\r\n		<attribute-def name="siape" type="java.lang.Long" use="optional" multiplicity="1">\r\n\r\n			<description>Número de inscrição no SIAPE</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="dataIngresso" type="java.util.Date" use="optional" multiplicity="1">\r\n\r\n			<description>Data de ingresso no serviço público</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="dataAdmissao" type="java.util.Date" use="optional" multiplicity="1">\r\n\r\n			<description>Data de admissão</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="dataAfastamento" type="java.util.Date" use="optional" multiplicity="1">\r\n\r\n			<description>Data de afastamento</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="estadoVinculo" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Estado do vínculo do funcionário (ativo, afastado, aposentado)</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="classe" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Classe do professor (auxiliar, assistente, adjunto, associado, titular)</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="nivel" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Nível da classe do professor (1, 2, 3 e 4)</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="titulacao" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Titulação máxima do professor (graduação, aperfeiçoamento, especialização, mestrado, doutorado, pós-doutorado)</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="lotacao" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Lotação de origem do professor</description>\r\n\r\n		</attribute-def>\r\n\r\n	</attributes-def>\r\n\r\n</class>\r\n\r\n\r\n', 'Dados relativos a um professor na instituição', 'many', 'Professor', 'TBL_SVC_PROFESSOR', ''),
+(4, '1.0', 'Membros de grupos', '', '<?xml version="1.0" encoding="UTF-8"?>\r\n\r\n<class name="MembroDeGrupo" class-version="1.0" schema-version="1.0">\r\n\r\n	<complete-name>Membros de grupos</complete-name>\r\n\r\n	<description>Define os campos para mapeamento de pessoas em grupos</description>\r\n\r\n	<attributes-def>\r\n\r\n		<!-- Guid do grupo -->\r\n\r\n		<attribute-def name="grupoGuid" type="java.lang.String" use="mandatory" multiplicity="1"/>\r\n\r\n		<!-- Tipo do objeto que pertence ao grupo\r\n\r\n		<attribute-def name="type" type="varchar(20)" use="required" multiplicity="1"/>\r\n\r\n		 -->\r\n\r\n	</attributes-def>\r\n\r\n</class>\r\n', 'Define os campos para mapeamento de pessoas em grupos', 'many', 'MembroDeGrupo', 'TBL_SVC_MEMBRODEGRUPO', ''),
+(5, '1.0', 'Dados de identificação de um indivíduo', '', '<?xml version="1.0" encoding="UTF-8"?>\r\n\r\n<class name="Identificacao" class-version="1.0" schema-version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\r\n\r\n	<complete-name>Dados de identificação de um indivíduo</complete-name>\r\n\r\n	<description>Define os atributos para identificação de indivíduos</description>\r\n\r\n	<multiplicity>1</multiplicity>\r\n\r\n	<attributes-def>\r\n\r\n		<attribute-def name="nomeCompleto" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Nome completo</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="nomeSolteiro" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Nome de solteiro</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="cpf" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Número de CPF</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="numeroIdentidade" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Número do documento de identidade</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="orgaoEmissorIdentidade" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Órgão emissor do documento de identidade</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="ufIdentidade" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>UF emissora do documento de identidade</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="passaporte" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Número do passaporte</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="estadoCivil" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Estado civil</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="sexo" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Sexo</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="nacionalidade" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Nacionalidade</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="dataNascimento" type="java.util.Date" use="optional" multiplicity="1">\r\n\r\n			<description>Data de nascimento</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="cidadeNascimento" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Cidade de nascimento</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="estadoNascimento" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Estado de nascimento</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="paisNascimento" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Pais de nascimento</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="nomeMae" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Nome completo da mãe</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="nomePai" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Nome completo do pai</description>\r\n\r\n		</attribute-def>\r\n\r\n	</attributes-def>\r\n\r\n</class>', 'Define os atributos para identificação de indivíduos', 'one', 'Identificacao', 'TBL_SVC_IDENTIFICACAO', ''),
+(6, '1.0', 'Dados básicos para definição de um grupo', '', '<?xml version="1.0" encoding="UTF-8"?>\r\n\r\n<class name="Grupo" class-version="1.0" schema-version="1.0">\r\n\r\n	<complete-name>Dados básicos para definição de um grupo</complete-name>\r\n\r\n	<description>Define a consulta para manutenção do grupo</description>\r\n\r\n	<multiplicity>1</multiplicity>\r\n\r\n	<attributes-def>\r\n\r\n		<attribute-def name="nome" type="java.lang.String" use="mandatory" multiplicity="1"/>\r\n\r\n		<attribute-def name="consulta" type="java.lang.String" use="mandatory" multiplicity="1"/>\r\n\r\n	</attributes-def>\r\n\r\n</class>', 'Define a consulta para manutenção do grupo', 'one', 'Grupo', 'TBL_SVC_GRUPO', ''),
+(7, '1.0', 'Endereços de um indivíduo', '', '<?xml version="1.0" encoding="UTF-8"?>\r\n\r\n<class name="Endereco" class-version="1.0" schema-version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\r\n\r\n	<complete-name>Endereços de um indivíduo</complete-name>\r\n\r\n	<description>Define os atributos para construção de endereços</description>\r\n\r\n	<attributes-def>\r\n\r\n		<attribute-def name="logradouro" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Logradouro (tipo e nome)</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="numero" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Número do local no logradouro</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="complemento" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Complemento do número</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="bairro" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Bairro</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="cidade" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Cidade</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="estado" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Sigla com duas letras do Estado</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="pais" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Código ISO do país com duas letras</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="cep" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Órgão emissor do documento de identidade</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="tipo" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Indicador do tipo de endereço (residencial, comercial)</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="preferencial" type="java.lang.Boolean" use="optional" multiplicity="1">\r\n\r\n			<description>Indicador se o endereço é preferencial ou não</description>\r\n\r\n		</attribute-def>\r\n\r\n	</attributes-def>\r\n\r\n</class>\r\n\r\n', 'Define os atributos para construção de endereços', 'many', 'Endereco', 'TBL_SVC_ENDERECO', ''),
+(8, '1.0', 'Dados de e-mail', '', '<?xml version="1.0" encoding="UTF-8"?>\r\n\r\n<class name="Email" class-version="1.0" schema-version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\r\n\r\n	<complete-name>Dados de e-mail</complete-name>\r\n\r\n	<description>Dados de e-mail de um indivíduo</description>\r\n\r\n	<attributes-def>\r\n\r\n		<attribute-def name="email" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Endereço de e-mail</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="tipo" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Tipo de e-mail (principal, alternativo)</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="redirecionamento" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Endereço de e-mail para redirecionamento</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="servidor" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Servidor de e-mail preferencial</description>\r\n\r\n		</attribute-def>\r\n\r\n	</attributes-def>\r\n\r\n</class>', 'Dados de e-mail de um indivíduo', 'many', 'Email', 'TBL_SVC_EMAIL', ''),
+(9, '1.0', 'Dados de usuário para autenticação', '', '<?xml version="1.0" encoding="UTF-8"?>\r\n\r\n<class name="Conta" class-version="1.0" schema-version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\r\n\r\n	<complete-name>Dados de usuário para autenticação</complete-name>\r\n\r\n	<description>Define os atributos para dados biométricos</description>\r\n\r\n	<attributes-def>\r\n\r\n		<attribute-def name="login" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Login do usuário</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="senha" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Senha do usuário, codificada em Base64</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="algoritmoSenha" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Algoritmo de criptografia da senha (crypt, sha1, md5)</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="dominio" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Domínio de validade do login</description>\r\n\r\n		</attribute-def>\r\n\r\n		\r\n\r\n	</attributes-def>\r\n\r\n</class>\r\n', 'Define os atributos para dados biométricos', 'many', 'Conta', 'TBL_SVC_CONTA', ''),
+(10, '1.0', 'Dados relativos a um aluno', '', '<?xml version="1.0" encoding="UTF-8"?>\r\n\r\n<class name="Aluno" class-version="1.0" schema-version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\r\n\r\n	<complete-name>Dados relativos a um aluno</complete-name>\r\n\r\n	<description>Dados relativos a um aluno</description>\r\n\r\n	<attributes-def>\r\n\r\n		<attribute-def name="matricula" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Número de matrícula no sistema acadêmico</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="nomeCurso" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Nome do curso na instituição</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="codigoCapes" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Código do curso na CAPES</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="codigoInep" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Código do curso no INEP</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="dataVinculacao" type="java.util.Date" use="optional" multiplicity="1">\r\n\r\n			<description>Data de ingresso do aluno no curso</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="estadoVinculo" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Estado do vínculo do aluno no curso (normal, trancado, concluído, diplomado, cancelado, jubilado, transferido, afastado)</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="nivelCurso" type="java.lang.String" use="optional" multiplicity="1">\r\n\r\n			<description>Nível do curso do aluno (graduação, mestrado, doutorado, especialização, aparefeiçoamento, ensino fundamental, ensino médio, extensão)</description>\r\n\r\n		</attribute-def>\r\n\r\n		<attribute-def name="dataAfastamento" type="java.util.Date" use="optional" multiplicity="1">\r\n\r\n			<description>Data de qualquer tipo de afastamento do aluno do curso</description>\r\n\r\n		</attribute-def>\r\n\r\n	</attributes-def>\r\n\r\n</class>', 'Dados relativos a um aluno', 'many', 'Aluno', 'TBL_SVC_ALUNO', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `TBL_CONFIGURATION`
+--
+
+CREATE TABLE  `TBL_CONFIGURATION` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `classDefinitionSchemaLocation` varchar(255) DEFAULT NULL,
+  `lastEidObjectVersion` bigint(20) DEFAULT NULL,
+  `servicesDir` varchar(255) DEFAULT NULL,
+  `systemVersion` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Extraindo dados da tabela `TBL_CONFIGURATION`
+--
+
+INSERT INTO `TBL_CONFIGURATION` (`id`, `classDefinitionSchemaLocation`, `lastEidObjectVersion`, `servicesDir`, `systemVersion`) VALUES
+(1, NULL, 0, '/opt/eid-1.3.7/WEB-INF', '1.3.7');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `TBL_EID_CLASS`
+--
+
+CREATE TABLE  `TBL_EID_CLASS` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `originalClassId` bigint(20) DEFAULT NULL,
+  `eidObject_guid` varchar(255) DEFAULT NULL,
+  `classDefinition_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK62B05918D70404A0` (`classDefinition_id`),
+  KEY `FK62B0591880BBB344` (`eidObject_guid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `TBL_EID_CLASS`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `TBL_EID_OBJECT`
+--
+
+CREATE TABLE  `TBL_EID_OBJECT` (
+  `guid` varchar(255) NOT NULL,
+  `active` bit(1) NOT NULL,
+  `pending` bit(1) DEFAULT NULL,
+  `serialNumber` bigint(20) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `unifiedDomain` bit(1) DEFAULT NULL,
+  `source_id` bigint(20) DEFAULT NULL,
+  `finalGuid` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`guid`),
+  KEY `FK74BE77F6A04D4FE` (`source_id`),
+  KEY `IDX_TBL_EID_OBJECT_GUID` (`guid`),
+  KEY `IDX_TBL_EID_OBJECT_FINALGUID` (`finalGuid`),
+  KEY `IDX_TBL_EID_OBJECT_PENDING` (`pending`),
+  KEY `IDX_TBL_EID_OBJECT_SERIALNUMBER` (`serialNumber`),
+  KEY `IDX_TBL_EID_OBJECT_TYPE` (`type`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `TBL_EID_OBJECT`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `TBL_EXTERNAL_SOURCE`
+--
+
+CREATE TABLE  `TBL_EXTERNAL_SOURCE` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `date` datetime DEFAULT NULL,
+  `sourceKey` varchar(255) DEFAULT NULL,
+  `sourceName` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `TBL_EXTERNAL_SOURCE`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `TBL_MAPPING`
+--
+
+CREATE TABLE  `TBL_MAPPING` (
+  `oldGuid` varchar(255) NOT NULL,
+  `newGuid` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`oldGuid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `TBL_MAPPING`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `TBL_MATCH`
+--
+
+CREATE TABLE  `TBL_MATCH` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `conciliationLevel` bigint(20) DEFAULT NULL,
+  `guid1` varchar(255) DEFAULT NULL,
+  `guid2` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKC953D9C4E12142C4` (`guid2`),
+  KEY `FKC953D9C4E12142C3` (`guid1`),
+  KEY `IDX_TBL_MATCH_CONCILIATIONLEVEL` (`conciliationLevel`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Extraindo dados da tabela `TBL_MATCH`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `TBL_SVC_ALUNO`
+--
+
+CREATE TABLE  `TBL_SVC_ALUNO` (
+  `id` bigint(20) NOT NULL,
+  `codigoCapes` varchar(255) DEFAULT NULL,
+  `codigoInep` varchar(255) DEFAULT NULL,
+  `dataAfastamento` datetime DEFAULT NULL,
+  `dataVinculacao` datetime DEFAULT NULL,
+  `estadoVinculo` varchar(255) DEFAULT NULL,
+  `matricula` varchar(255) DEFAULT NULL,
+  `nivelCurso` varchar(255) DEFAULT NULL,
+  `nomeCurso` varchar(255) DEFAULT NULL,
+  `estadoVinculo__Source_id` bigint(20) DEFAULT NULL,
+  `codigoInep__Source_id` bigint(20) DEFAULT NULL,
+  `matricula__Source_id` bigint(20) DEFAULT NULL,
+  `dataAfastamento__Source_id` bigint(20) DEFAULT NULL,
+  `nomeCurso__Source_id` bigint(20) DEFAULT NULL,
+  `nivelCurso__Source_id` bigint(20) DEFAULT NULL,
+  `codigoCapes__Source_id` bigint(20) DEFAULT NULL,
+  `dataVinculacao__Source_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK8FDB92AB5BB3F5B7` (`codigoCapes__Source_id`),
+  KEY `FK8FDB92AB2CB5EF4` (`estadoVinculo__Source_id`),
+  KEY `FK8FDB92ABF5E9CA57` (`id`),
+  KEY `FK8FDB92ABE807481B` (`nomeCurso__Source_id`),
+  KEY `FK8FDB92AB7B564304` (`nivelCurso__Source_id`),
+  KEY `FK8FDB92AB5E0183C5` (`dataVinculacao__Source_id`),
+  KEY `FK8FDB92AB2C25859B` (`dataAfastamento__Source_id`),
+  KEY `FK8FDB92AB39279ED5` (`codigoInep__Source_id`),
+  KEY `FK8FDB92ABE5FC6CE0` (`matricula__Source_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `TBL_SVC_ALUNO`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `TBL_SVC_CONTA`
+--
+
+CREATE TABLE  `TBL_SVC_CONTA` (
+  `id` bigint(20) NOT NULL,
+  `algoritmoSenha` varchar(255) DEFAULT NULL,
+  `dominio` varchar(255) DEFAULT NULL,
+  `login` varchar(255) DEFAULT NULL,
+  `senha` varchar(255) DEFAULT NULL,
+  `algoritmoSenha__Source_id` bigint(20) DEFAULT NULL,
+  `login__Source_id` bigint(20) DEFAULT NULL,
+  `dominio__Source_id` bigint(20) DEFAULT NULL,
+  `senha__Source_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK8FF9052FF5E9CA57` (`id`),
+  KEY `FK8FF9052F66FC8B5` (`algoritmoSenha__Source_id`),
+  KEY `FK8FF9052F31F2C9B1` (`dominio__Source_id`),
+  KEY `FK8FF9052FF712ABA9` (`senha__Source_id`),
+  KEY `FK8FF9052F741FAA15` (`login__Source_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `TBL_SVC_CONTA`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `TBL_SVC_EMAIL`
+--
+
+CREATE TABLE  `TBL_SVC_EMAIL` (
+  `id` bigint(20) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `redirecionamento` varchar(255) DEFAULT NULL,
+  `servidor` varchar(255) DEFAULT NULL,
+  `tipo` varchar(255) DEFAULT NULL,
+  `email__Source_id` bigint(20) DEFAULT NULL,
+  `redirecionamento__Source_id` bigint(20) DEFAULT NULL,
+  `tipo__Source_id` bigint(20) DEFAULT NULL,
+  `servidor__Source_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK9014195CF5E9CA57` (`id`),
+  KEY `FK9014195C15AA334A` (`servidor__Source_id`),
+  KEY `FK9014195C3AD5C002` (`email__Source_id`),
+  KEY `FK9014195C5CE1896A` (`tipo__Source_id`),
+  KEY `FK9014195CB929289E` (`redirecionamento__Source_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `TBL_SVC_EMAIL`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `TBL_SVC_ENDERECO`
+--
+
+CREATE TABLE  `TBL_SVC_ENDERECO` (
+  `id` bigint(20) NOT NULL,
+  `bairro` varchar(255) DEFAULT NULL,
+  `cep` varchar(255) DEFAULT NULL,
+  `cidade` varchar(255) DEFAULT NULL,
+  `complemento` varchar(255) DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  `logradouro` varchar(255) DEFAULT NULL,
+  `numero` varchar(255) DEFAULT NULL,
+  `pais` varchar(255) DEFAULT NULL,
+  `preferencial` bit(1) DEFAULT NULL,
+  `tipo` varchar(255) DEFAULT NULL,
+  `cidade__Source_id` bigint(20) DEFAULT NULL,
+  `preferencial__Source_id` bigint(20) DEFAULT NULL,
+  `cep__Source_id` bigint(20) DEFAULT NULL,
+  `numero__Source_id` bigint(20) DEFAULT NULL,
+  `estado__Source_id` bigint(20) DEFAULT NULL,
+  `logradouro__Source_id` bigint(20) DEFAULT NULL,
+  `pais__Source_id` bigint(20) DEFAULT NULL,
+  `bairro__Source_id` bigint(20) DEFAULT NULL,
+  `tipo__Source_id` bigint(20) DEFAULT NULL,
+  `complemento__Source_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKCCC345E9EBACAF7A` (`cidade__Source_id`),
+  KEY `FKCCC345E9F5E9CA57` (`id`),
+  KEY `FKCCC345E97FB6FB63` (`pais__Source_id`),
+  KEY `FKCCC345E95CE1896A` (`tipo__Source_id`),
+  KEY `FKCCC345E9475A2FF8` (`estado__Source_id`),
+  KEY `FKCCC345E96182C594` (`preferencial__Source_id`),
+  KEY `FKCCC345E91E8F7675` (`complemento__Source_id`),
+  KEY `FKCCC345E9A7922A19` (`bairro__Source_id`),
+  KEY `FKCCC345E922530810` (`cep__Source_id`),
+  KEY `FKCCC345E9FE185382` (`numero__Source_id`),
+  KEY `FKCCC345E9C4934C2A` (`logradouro__Source_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `TBL_SVC_ENDERECO`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `TBL_SVC_GRUPO`
+--
+
+CREATE TABLE  `TBL_SVC_GRUPO` (
+  `id` bigint(20) NOT NULL,
+  `consulta` varchar(255) DEFAULT NULL,
+  `nome` varchar(255) DEFAULT NULL,
+  `consulta__Source_id` bigint(20) DEFAULT NULL,
+  `nome__Source_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK9032DA29F5E9CA57` (`id`),
+  KEY `FK9032DA296C544809` (`consulta__Source_id`),
+  KEY `FK9032DA2974763C65` (`nome__Source_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `TBL_SVC_GRUPO`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `TBL_SVC_IDENTIFICACAO`
+--
+
+CREATE TABLE  `TBL_SVC_IDENTIFICACAO` (
+  `id` bigint(20) NOT NULL,
+  `cidadeNascimento` varchar(255) DEFAULT NULL,
+  `cpf` varchar(255) DEFAULT NULL,
+  `dataNascimento` datetime DEFAULT NULL,
+  `estadoCivil` varchar(255) DEFAULT NULL,
+  `estadoNascimento` varchar(255) DEFAULT NULL,
+  `nacionalidade` varchar(255) DEFAULT NULL,
+  `nomeCompleto` varchar(255) DEFAULT NULL,
+  `nomeMae` varchar(255) DEFAULT NULL,
+  `nomePai` varchar(255) DEFAULT NULL,
+  `nomeSolteiro` varchar(255) DEFAULT NULL,
+  `numeroIdentidade` varchar(255) DEFAULT NULL,
+  `orgaoEmissorIdentidade` varchar(255) DEFAULT NULL,
+  `paisNascimento` varchar(255) DEFAULT NULL,
+  `passaporte` varchar(255) DEFAULT NULL,
+  `sexo` varchar(255) DEFAULT NULL,
+  `ufIdentidade` varchar(255) DEFAULT NULL,
+  `cpf__Source_id` bigint(20) DEFAULT NULL,
+  `nomePai__Source_id` bigint(20) DEFAULT NULL,
+  `dataNascimento__Source_id` bigint(20) DEFAULT NULL,
+  `cidadeNascimento__Source_id` bigint(20) DEFAULT NULL,
+  `orgaoEmissorIdentidade__Source_id` bigint(20) DEFAULT NULL,
+  `estadoNascimento__Source_id` bigint(20) DEFAULT NULL,
+  `nomeSolteiro__Source_id` bigint(20) DEFAULT NULL,
+  `nomeCompleto__Source_id` bigint(20) DEFAULT NULL,
+  `estadoCivil__Source_id` bigint(20) DEFAULT NULL,
+  `nacionalidade__Source_id` bigint(20) DEFAULT NULL,
+  `nomeMae__Source_id` bigint(20) DEFAULT NULL,
+  `numeroIdentidade__Source_id` bigint(20) DEFAULT NULL,
+  `paisNascimento__Source_id` bigint(20) DEFAULT NULL,
+  `passaporte__Source_id` bigint(20) DEFAULT NULL,
+  `ufIdentidade__Source_id` bigint(20) DEFAULT NULL,
+  `sexo__Source_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKFA003AF7EFA72CB5` (`sexo__Source_id`),
+  KEY `FKFA003AF7A9C951C9` (`dataNascimento__Source_id`),
+  KEY `FKFA003AF799B174DF` (`nomePai__Source_id`),
+  KEY `FKFA003AF721527738` (`paisNascimento__Source_id`),
+  KEY `FKFA003AF72824B015` (`orgaoEmissorIdentidade__Source_id`),
+  KEY `FKFA003AF7D5518286` (`nomeMae__Source_id`),
+  KEY `FKFA003AF7F5E9CA57` (`id`),
+  KEY `FKFA003AF731FE810A` (`passaporte__Source_id`),
+  KEY `FKFA003AF7A138723A` (`nacionalidade__Source_id`),
+  KEY `FKFA003AF71439186B` (`numeroIdentidade__Source_id`),
+  KEY `FKFA003AF7C7DF6380` (`nomeSolteiro__Source_id`),
+  KEY `FKFA003AF79C3FD16` (`ufIdentidade__Source_id`),
+  KEY `FKFA003AF71503D9E5` (`cpf__Source_id`),
+  KEY `FKFA003AF7D433A8F` (`cidadeNascimento__Source_id`),
+  KEY `FKFA003AF716A0B58D` (`estadoNascimento__Source_id`),
+  KEY `FKFA003AF7822A7C42` (`nomeCompleto__Source_id`),
+  KEY `FKFA003AF7F87692B1` (`estadoCivil__Source_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `TBL_SVC_IDENTIFICACAO`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `TBL_SVC_MEMBRODEGRUPO`
+--
+
+CREATE TABLE  `TBL_SVC_MEMBRODEGRUPO` (
+  `id` bigint(20) NOT NULL,
+  `grupoGuid` varchar(255) DEFAULT NULL,
+  `grupoGuid__Source_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKC5D0F6DEF5E9CA57` (`id`),
+  KEY `FKC5D0F6DE4024C36C` (`grupoGuid__Source_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `TBL_SVC_MEMBRODEGRUPO`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `TBL_SVC_PROFESSOR`
+--
+
+CREATE TABLE  `TBL_SVC_PROFESSOR` (
+  `id` bigint(20) NOT NULL,
+  `classe` varchar(255) DEFAULT NULL,
+  `dataAdmissao` datetime DEFAULT NULL,
+  `dataAfastamento` datetime DEFAULT NULL,
+  `estadoVinculo` varchar(255) DEFAULT NULL,
+  `lotacao` varchar(255) DEFAULT NULL,
+  `nivel` varchar(255) DEFAULT NULL,
+  `siape` bigint(20) DEFAULT NULL,
+  `titulacao` varchar(255) DEFAULT NULL,
+  `titulacao__Source_id` bigint(20) DEFAULT NULL,
+  `dataAfastamento__Source_id` bigint(20) DEFAULT NULL,
+  `nivel__Source_id` bigint(20) DEFAULT NULL,
+  `estadoVinculo__Source_id` bigint(20) DEFAULT NULL,
+  `lotacao__Source_id` bigint(20) DEFAULT NULL,
+  `classe__Source_id` bigint(20) DEFAULT NULL,
+  `dataAdmissao__Source_id` bigint(20) DEFAULT NULL,
+  `siape__Source_id` bigint(20) DEFAULT NULL,
+  `dataIngresso` datetime DEFAULT NULL,
+  `dataIngresso__Source_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK1103BC2F2CB5EF4` (`estadoVinculo__Source_id`),
+  KEY `FK1103BC2F8A03BBDD` (`lotacao__Source_id`),
+  KEY `FK1103BC2FF5E9CA57` (`id`),
+  KEY `FK1103BC2F791BE11E` (`siape__Source_id`),
+  KEY `FK1103BC2F5E159911` (`classe__Source_id`),
+  KEY `FK1103BC2FD6364D18` (`titulacao__Source_id`),
+  KEY `FK1103BC2F8EAE53DC` (`nivel__Source_id`),
+  KEY `FK1103BC2F2C25859B` (`dataAfastamento__Source_id`),
+  KEY `FK1103BC2FDD628F07` (`dataAdmissao__Source_id`),
+  KEY `FK1103BC2FDDC4B09A` (`dataIngresso__Source_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `TBL_SVC_PROFESSOR`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `TBL_SVC_TECNICO`
+--
+
+CREATE TABLE  `TBL_SVC_TECNICO` (
+  `id` bigint(20) NOT NULL,
+  `classe` varchar(255) DEFAULT NULL,
+  `dataAdmissao` datetime DEFAULT NULL,
+  `dataAfastamento` datetime DEFAULT NULL,
+  `estadoVinculo` varchar(255) DEFAULT NULL,
+  `funcaoPrincipal` varchar(255) DEFAULT NULL,
+  `lotacao` varchar(255) DEFAULT NULL,
+  `nivelCapacitacao` varchar(255) DEFAULT NULL,
+  `padrao` varchar(255) DEFAULT NULL,
+  `siape` bigint(20) DEFAULT NULL,
+  `nivelCapacitacao__Source_id` bigint(20) DEFAULT NULL,
+  `lotacao__Source_id` bigint(20) DEFAULT NULL,
+  `classe__Source_id` bigint(20) DEFAULT NULL,
+  `estadoVinculo__Source_id` bigint(20) DEFAULT NULL,
+  `dataAfastamento__Source_id` bigint(20) DEFAULT NULL,
+  `siape__Source_id` bigint(20) DEFAULT NULL,
+  `dataAdmissao__Source_id` bigint(20) DEFAULT NULL,
+  `padrao__Source_id` bigint(20) DEFAULT NULL,
+  `funcaoPrincipal__Source_id` bigint(20) DEFAULT NULL,
+  `dataIngresso` datetime DEFAULT NULL,
+  `dataIngresso__Source_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKE76858392CB5EF4` (`estadoVinculo__Source_id`),
+  KEY `FKE76858398A03BBDD` (`lotacao__Source_id`),
+  KEY `FKE7685839F5E9CA57` (`id`),
+  KEY `FKE768583978DFCC51` (`padrao__Source_id`),
+  KEY `FKE7685839791BE11E` (`siape__Source_id`),
+  KEY `FKE76858395E159911` (`classe__Source_id`),
+  KEY `FKE76858399D2D8D22` (`funcaoPrincipal__Source_id`),
+  KEY `FKE76858392C25859B` (`dataAfastamento__Source_id`),
+  KEY `FKE7685839D7B66851` (`nivelCapacitacao__Source_id`),
+  KEY `FKE7685839DD628F07` (`dataAdmissao__Source_id`),
+  KEY `FKE7685839DDC4B09A` (`dataIngresso__Source_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `TBL_SVC_TECNICO`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `TBL_SVC_TELEFONE`
+--
+
+CREATE TABLE  `TBL_SVC_TELEFONE` (
+  `id` bigint(20) NOT NULL,
+  `codigoArea` varchar(255) DEFAULT NULL,
+  `numero` varchar(255) DEFAULT NULL,
+  `tipo` varchar(255) DEFAULT NULL,
+  `tipo__Source_id` bigint(20) DEFAULT NULL,
+  `codigoArea__Source_id` bigint(20) DEFAULT NULL,
+  `numero__Source_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK147E490AF5E9CA57` (`id`),
+  KEY `FK147E490A5CE1896A` (`tipo__Source_id`),
+  KEY `FK147E490A7E5AC2B8` (`codigoArea__Source_id`),
+  KEY `FK147E490AFE185382` (`numero__Source_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `TBL_SVC_TELEFONE`
+--
+
+
+--
+-- RestriÃ§Ãµes para as tabelas dumpadas
+--
+
+--
+-- RestriÃ§Ãµes para a tabela `TBL_EID_CLASS`
+--
+ALTER TABLE `TBL_EID_CLASS`
+  ADD CONSTRAINT `fk_eid_class_tbl_class_def_id` FOREIGN KEY (`classDefinition_id`) REFERENCES `TBL_CLASS_DEF` (`id`),
+  ADD CONSTRAINT `fk_eid_class_tbl_eid_object_guid` FOREIGN KEY (`eidObject_guid`) REFERENCES `TBL_EID_OBJECT` (`guid`),
+  ADD CONSTRAINT `fk_tbl_eid_object_guid` FOREIGN KEY (`eidObject_guid`) REFERENCES `TBL_EID_OBJECT` (`guid`) ON DELETE CASCADE;
+
+--
+-- RestriÃ§Ãµes para a tabela `TBL_MATCH`
+--
+ALTER TABLE `TBL_MATCH`
+  ADD CONSTRAINT `fk_match_tbl_eid_object_guid1` FOREIGN KEY (`guid1`) REFERENCES `TBL_EID_OBJECT` (`guid`),
+  ADD CONSTRAINT `fk_match_tbl_eid_object_guid2` FOREIGN KEY (`guid2`) REFERENCES `TBL_EID_OBJECT` (`guid`);
+
+--
+-- RestriÃ§Ãµes para a tabela `TBL_SVC_ALUNO`
+--
+ALTER TABLE `TBL_SVC_ALUNO`
+  ADD CONSTRAINT `fk_aluno_tbl_eid_class_id` FOREIGN KEY (`id`) REFERENCES `TBL_EID_CLASS` (`id`),
+  ADD CONSTRAINT `fk_tbl_eid_class_id` FOREIGN KEY (`id`) REFERENCES `TBL_EID_CLASS` (`id`);
+
+--
+-- RestriÃ§Ãµes para a tabela `TBL_SVC_CONTA`
+--
+ALTER TABLE `TBL_SVC_CONTA`
+  ADD CONSTRAINT `fk_conta_tbl_eid_class_id` FOREIGN KEY (`id`) REFERENCES `TBL_EID_CLASS` (`id`);
+
+--
+-- RestriÃ§Ãµes para a tabela `TBL_SVC_EMAIL`
+--
+ALTER TABLE `TBL_SVC_EMAIL`
+  ADD CONSTRAINT `fk_email_tbl_eid_class_id` FOREIGN KEY (`id`) REFERENCES `TBL_EID_CLASS` (`id`);
+
+--
+-- RestriÃ§Ãµes para a tabela `TBL_SVC_ENDERECO`
+--
+ALTER TABLE `TBL_SVC_ENDERECO`
+  ADD CONSTRAINT `fk_endereco_tbl_eid_class_id` FOREIGN KEY (`id`) REFERENCES `TBL_EID_CLASS` (`id`);
+
+--
+-- RestriÃ§Ãµes para a tabela `TBL_SVC_GRUPO`
+--
+ALTER TABLE `TBL_SVC_GRUPO`
+  ADD CONSTRAINT `fk_grupo_tbl_eid_class_id` FOREIGN KEY (`id`) REFERENCES `TBL_EID_CLASS` (`id`);
+
+--
+-- RestriÃ§Ãµes para a tabela `TBL_SVC_IDENTIFICACAO`
+--
+ALTER TABLE `TBL_SVC_IDENTIFICACAO`
+  ADD CONSTRAINT `fk_identificacao_tbl_eid_class_id` FOREIGN KEY (`id`) REFERENCES `TBL_EID_CLASS` (`id`);
+
+--
+-- RestriÃ§Ãµes para a tabela `TBL_SVC_PROFESSOR`
+--
+ALTER TABLE `TBL_SVC_PROFESSOR`
+  ADD CONSTRAINT `FK1103BC2FDDC4B09A` FOREIGN KEY (`dataIngresso__Source_id`) REFERENCES `TBL_EXTERNAL_SOURCE` (`id`),
+  ADD CONSTRAINT `fk_professor_tbl_eid_class_id` FOREIGN KEY (`id`) REFERENCES `TBL_EID_CLASS` (`id`);
+
+--
+-- RestriÃ§Ãµes para a tabela `TBL_SVC_TECNICO`
+--
+ALTER TABLE `TBL_SVC_TECNICO`
+  ADD CONSTRAINT `FKE7685839DDC4B09A` FOREIGN KEY (`dataIngresso__Source_id`) REFERENCES `TBL_EXTERNAL_SOURCE` (`id`),
+  ADD CONSTRAINT `fk_tecnico_tbl_eid_class_id` FOREIGN KEY (`id`) REFERENCES `TBL_EID_CLASS` (`id`);
+
+--
+-- RestriÃ§Ãµes para a tabela `TBL_SVC_TELEFONE`
+--
+ALTER TABLE `TBL_SVC_TELEFONE`
+  ADD CONSTRAINT `fk_telefone_tbl_eid_class_id` FOREIGN KEY (`id`) REFERENCES `TBL_EID_CLASS` (`id`);
+
+

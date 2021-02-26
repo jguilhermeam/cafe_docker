@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+  eid:
+    image: eid
+    build: 
+      context: eid
+    container_name: eid
+    restart: always
+    network_mode: bridge
+    links:
+      - cafe_mysql:cafe_mysql
+      - cafe_ldap:cafe_ldap
+    ports:
+      - 8080:8080
+
+  shibboleth:
+    image: shibboleth
+    build:
+      context: shibboleth
+    container_name: shibboleth
+    restart: always
+    network_mode: bridge
+    links:
+      - cafe_ldap:cafe_ldap
+    ports:
+      - 443:443
+      - 8443:8443
+        
+  cafe_ldap:
+    image: cafe_ldap
+    build: 
+      context: ldap
+    container_name: cafe_ldap
+    restart: always
+    network_mode: bridge
+    volumes:
+      - ldap:/var/lib/ldap
+
+  cafe_mysql:
+    image: mysql:5.7
+    container_name: cafe_mysql
+    restart: always
+    network_mode: bridge
+    volumes:
+      - mysql:/var/lib/mysql
+    environment:
+      - "MYSQL_ROOT_PASSWORD=SENHA_MYSQL"
+
+volumes:
+  ldap:
+  mysql:

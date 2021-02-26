@@ -1,0 +1,169 @@
+##
+## Velocity Template for DisplayUsernamePasswordPage view-state
+##
+## Velocity context will contain the following properties
+## flowExecutionUrl - the form action location
+## flowRequestContext - the Spring Web Flow RequestContext
+## flowExecutionKey - the SWF execution key (this is built into the flowExecutionUrl)
+## profileRequestContext - root of context tree
+## authenticationContext - context with authentication request information
+## authenticationErrorContext - context with login error state
+## authenticationWarningContext - context with login warning state
+## ldapResponseContext - context with LDAP state (if using native LDAP)
+## rpUIContext - the context with SP UI information from the metadata
+## extendedAuthenticationFlows - collection of "extended" AuthenticationFlowDescriptor objects
+## passwordPrincipals - contents of the shibboleth.authn.Password.PrincipalOverride bean
+## encoder - HTMLEncoder class
+## request - HttpServletRequest
+## response - HttpServletResponse
+## environment - Spring Environment object for property resolution
+## custom - arbitrary object injected by deployer
+##
+#set ($rpContext = $profileRequestContext.getSubcontext('net.shibboleth.idp.profile.context.RelyingPartyContext'))
+#set ($username = $authenticationContext.getSubcontext('net.shibboleth.idp.authn.context.UsernamePasswordContext', true).getUsername())
+#set ($passwordEnabled = false)
+#if (!$passwordPrincipals or $passwordPrincipals.isEmpty() or $authenticationContext.isAcceptable($passwordPrincipals))
+  #set ($passwordEnabled = true)
+#end
+##
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>#springMessageText("idp.title", "CAFe - Universidade")</title>
+
+<link rel="stylesheet" type="text/css" href="$request.getContextPath()/api/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="$request.getContextPath()/api/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+
+<link rel="stylesheet" type="text/css" href="$request.getContextPath()/css/login.css" />
+<link rel="stylesheet" type="text/css" href="$request.getContextPath()/api/font-awesome/4.6.1/css/font-awesome.min.css" />
+
+
+<script type="text/javascript" src="$request.getContextPath()/api/jquery/2.2.3/jquery.min.js"></script>
+<script type="text/javascript" src="$request.getContextPath()/api/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+
+<div id="login" name="login" class="login">
+  <div id="attribute-release-main" name="attribute-release-main" class="loginMain">
+    <div id="login-main-container" name="login-main-container" class="loginMainContainer">
+
+      <div id="login-content-container" name="login-content-container" class="loginContentContainer">
+
+        <div id="login-main-header" name="login-main-header" class="loginMainHeader">
+          <!--<img src="images/topo_cafe.png" alt="CAFe - Comunidade Acadêmica Federada" title="alt="CAFe - Comunidade Acadêmica Federada"" />-->
+        </div>
+
+        <div id="login-main-content" name="login-main-content" class="loginMainContent">
+
+
+          <div class="loginMainContentLoginBox clearfix">
+
+             <div class="image">
+              <img src="$request.getContextPath()/images/logo-instituicao.png"  height="250" width="320" />
+              </br>
+              </br>
+            </div>
+
+               <p style="text-align:center">
+              ESTE ACESSO ESTÁ MAIS SEGURO! <br />
+              <a href="https://www.rnp.br/servicos/servicos-avancados/cafe/acesso-mais-seguro" target="_blank">CLIQUE AQUI</a>  PARA SABER MAIS. <br />
+            </p>
+
+            <form role="form" action="$flowExecutionUrl" method="post">
+              #if ($passwordEnabled)
+              <div class="form-group">
+                <input placeholder="#springMessageText("idp.login.username", "Username")" class="form-control" id="username" name="j_username" type="text" value="#if($username)$encoder.encodeForHTML($username)#end">
+              </div>
+              <div class="form-group">
+                <input placeholder="#springMessageText("idp.login.password", "Password")" class="form-control" id="password" name="j_password" type="password" value="">
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" name="donotcache" value="1"> #springMessageText("idp.login.donotcache", "Don't Remember Login")</label>
+              </div>
+              #end
+
+              <div class="checkbox">
+                <label><input type="checkbox" name="_shib_idp_revokeConsent" value="true">
+                #springMessageText("idp.attribute-release.revoke", "Clear prior granting of permission for release of your information to this service.")</label>
+              </div>
+              <br />
+
+              #if ($passwordEnabled)
+                <button class="btn btn-default" type="submit" name="_eventId_proceed" onClick="this.childNodes[0].nodeValue='#springMessageText("idp.login.pleasewait", "Logging in, please wait...")'">#springMessageText("idp.login.login", "Login")</button>
+              #end
+
+              #foreach ($extFlow in $extendedAuthenticationFlows)
+                #if ($authenticationContext.isAcceptable($extFlow) and $extFlow.apply(profileRequestContext))
+                  <br />
+                  <button id="btn btn-default"type="submit" name="_eventId_$extFlow.getId()">
+                    #springMessageText("idp.login.$extFlow.getId().replace('authn/','')", $extFlow.getId().replace('authn/',''))
+                  </button>
+                #end
+              #end
+            </form>
+    </div>
+
+          <div class="loginMainContentLogosBox clearfix">
+            #*
+              //
+              //    SP Description & Logo (optional)
+              //    These idpui lines will display added information (if available
+              //    in the metadata) about the Service Provider (SP) that requested
+              //    authentication. These idpui lines are "active" in this example
+              //    (not commented out) - this extra SP info will be displayed.
+              //    Remove or comment out these lines to stop the display of the
+              //    added SP information.
+              //
+            *#
+            #set ($logo = $rpUIContext.getLogo())
+            #if ($logo)
+            <div class="image">
+              <img src="images/rnp-logo.png" />
+            </div>
+            #end
+            #set ($desc = $rpUIContext.getServiceDescription())
+            #if ($desc)
+            <div class="text">
+              <p>
+               <!-- $encoder.encodeForHTML($desc) -->
+              </p>
+            </div>
+            #end
+          </div>
+
+          <div class="loginMainContentFooterBox clearfix">
+          <div class="logo">
+              <img src="$request.getContextPath()/images/logos/rnp.png" />
+            </div>
+            <div class="logo">
+              <img src="$request.getContextPath()/images/logos/ministerio-defesa.png" />
+            </div>
+            <div class="logo">
+              <img src="$request.getContextPath()/images/logos/ministerio-cultura.png" />
+            </div>
+            <div class="logo">
+              <img src="$request.getContextPath()/images/logos/ministerio-saude.png" />
+            </div>
+            <div class="logo">
+              <img src="$request.getContextPath()/images/logos/ministerio-educacao.png" />
+            </div>
+            <div class="logo">
+              <img src="$request.getContextPath()/images/logos/ministerio-ciencia-tec-inovacao-telco.png" />
+            </div>
+             <div class="logo">
+              <img src="$request.getContextPath()/images/logos/governo-federal.png" />
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<MetadataProvider id="ShibbolethMetadata" xsi:type="ChainingMetadataProvider"
+    xmlns="urn:mace:shibboleth:2.0:metadata"
+    xmlns:resource="urn:mace:shibboleth:2.0:resource"
+    xmlns:security="urn:mace:shibboleth:2.0:security"
+    xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:mace:shibboleth:2.0:metadata http://shibboleth.net/schema/idp/shibboleth-metadata.xsd
+                        urn:mace:shibboleth:2.0:resource http://shibboleth.net/schema/idp/shibboleth-resource.xsd
+                        urn:mace:shibboleth:2.0:security http://shibboleth.net/schema/idp/shibboleth-security.xsd
+                        urn:oasis:names:tc:SAML:2.0:metadata http://docs.oasis-open.org/security/saml/v2.0/saml-schema-metadata-2.0.xsd">
+    <MetadataProvider
+        xmlns="urn:mace:shibboleth:2.0:metadata"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="urn:mace:shibboleth:2.0:metadata http://shibboleth.net/schema/idp/shibboleth-metadata.xsd"
+        xsi:type="FileBackedHTTPMetadataProvider"
+        id="chimarrao"
+        metadataURL="https://ds.chimarrao.cafe.rnp.br/metadata/chimarrao-metadata.xml"
+        backingFile="%{idp.home}/metadata/chimarrao-metadata.xml">
+    </MetadataProvider>
+    <MetadataProvider
+        xmlns="urn:mace:shibboleth:2.0:metadata"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="urn:mace:shibboleth:2.0:metadata http://shibboleth.net/schema/idp/shibboleth-metadata.xsd"
+        xsi:type="FileBackedHTTPMetadataProvider"
+        id="cafe"
+        metadataURL="https://ds.cafe.rnp.br/metadata/cafe-metadata.xml"
+        backingFile="%{idp.home}/metadata/cafe-metadata.xml">
+    </MetadataProvider>
+        <MetadataProvider
+        xmlns="urn:mace:shibboleth:2.0:metadata"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="urn:mace:shibboleth:2.0:metadata http://shibboleth.net/schema/idp/shibboleth-metadata.xsd"
+        xsi:type="FileBackedHTTPMetadataProvider"
+        id="edugain"
+        metadataURL="https://ds.cafe.rnp.br/metadata/edugain/edugain-mds/metadata.edugain+sp.xml"
+        backingFile="%{idp.home}/metadata/edugain+sp-metadata.xml">
+    </MetadataProvider>
+</MetadataProvider>

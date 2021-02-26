@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context docBase="/opt/eid2ldap-1.2.0/"
+         privileged="true"
+         antiResourceLocking="false"
+         antiJARLocking="false"
+         unpackWAR="false"
+         swallowOutput="true"
+         workDir="work/Catalina/localhost/eid2ldap">
+
+  <Resource
+    name="jdbc/eid2ldap"
+    type="javax.sql.DataSource"
+    driverClassName="com.mysql.jdbc.Driver"
+    maxIdle="10"
+    maxWait="5000"
+    username="root"
+    password="SENHA_MYSQL"
+    url="jdbc:mysql://cafe_mysql:3306/eid2ldap"
+    maxActive="50"
+    factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory"/>
+
+  <WatchedResource>META-INF/context.xml</WatchedResource>
+
+</Context>
+

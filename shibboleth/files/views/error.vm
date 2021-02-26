@@ -1,0 +1,113 @@
+##
+## Velocity Template for error end-state
+##
+## Velocity context will contain the following properties
+## flowRequestContext - the Spring Web Flow RequestContext
+## encoder - HTMLEncoder class
+## request - HttpServletRequest
+## response - HttpServletResponse
+## environment - Spring Environment object for property resolution
+## custom - arbitrary object injected by deployer
+##
+#set ($title = $springMacroRequestContext.getMessage("idp.title", "Web Login Service"))
+#set ($defaultTitleSuffix = $springMacroRequestContext.getMessage("idp.title.suffix", "Error"))
+##
+#if ($flowRequestContext)
+	## This handles flow events, the most common case.
+    #set ($eventId = $flowRequestContext.getCurrentEvent().getId())
+    #set ($eventKey = $springMacroRequestContext.getMessage("$eventId", "error"))
+    #set ($titleSuffix = $springMacroRequestContext.getMessage("${eventKey}.title", "$defaultTitleSuffix"))
+    #set ($message = $springMacroRequestContext.getMessage("${eventKey}.message", "$defaultTitleSuffix: $eventId"))
+    #if ($eventId == "AccessDenied" or $eventId == "ContextCheckDenied")
+        $response.setStatus(403)
+    #elseif ($eventId == "AttributeReleaseRejected" || $eventId == "TermsRejected")
+        $response.setStatus(200)
+    #elseif ($eventKey == "unexpected" || $eventKey == "runtime-error" || $eventKey == "error")
+        $response.setStatus(500)
+    #else
+        $response.setStatus(400)
+    #end
+#elseif ($exception)
+	## This handles exceptions that reach the Spring-MVC exception handler.
+    #set ($eventId = $exception.getClass().getSimpleName())
+    #set ($eventKey = $springMacroRequestContext.getMessage("$eventId", "error"))
+    #set ($titleSuffix = $springMacroRequestContext.getMessage("${eventKey}.title", "$defaultTitleSuffix"))
+    #set ($message = $springMacroRequestContext.getMessage("${eventKey}.message", "$defaultTitleSuffix: $eventId"))
+#else
+	## This is a catch-all that theoretically shouldn't happen?
+    #set ($titleSuffix = $defaultTitleSuffix)
+    #set ($message = $springMacroRequestContext.getMessage("idp.message", "An unidentified error occurred."))
+#end
+##
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>$title - $titleSuffix</title>
+
+<link rel="stylesheet" type="text/css" href="$request.getContextPath()/api/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="$request.getContextPath()/api/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+
+<link rel="stylesheet" type="text/css" href="$request.getContextPath()/css/error.css" />
+<link rel="stylesheet" type="text/css" href="$request.getContextPath()/api/font-awesome/4.6.1/css/font-awesome.min.css" />
+
+<script type="text/javascript" src="$request.getContextPath()/api/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="$request.getContextPath()/api/jquery/2.2.3/jquery.min.js"></script>
+
+</head>
+<body>
+
+<div id="error" name="error" class="error">
+  <div id="error-main" name="error-main" class="errorMain">
+
+    <div id="error-main-container" name="error-main-container" class="errorMainContainer">
+
+      <div id="error-content-container" name="error-content-container" class="errorContentContainer">
+
+        <div id="error-main-header" name="error-main-header" class="errorMainHeader">
+          <img src="images/topo_cafe.png" alt="CAFe - Comunidade Acadêmica Federada" title="alt="CAFe - Comunidade Acadêmica Federada"" />
+        </div>
+
+        <div id="error-main-content" name="error-main-content" class="errorMainContent">
+
+          <div class="errorMainContent clearfix">
+						<div class="errorMainContentBox clearfix">
+              <h2>$title - $titleSuffix</h2>
+              <p>#evaluate($message)</b></p>
+            </div>
+					</div>
+
+          <div class="errorMainContentLogosBox clearfix">
+            <div class="logo">
+              <img src="$request.getContextPath()/images/logos/rnp.png" />
+            </div>
+            <div class="logo">
+              <img src="$request.getContextPath()/images/logos/ministerio-defesa.png" />
+            </div>
+            <div class="logo">
+              <img src="$request.getContextPath()/images/logos/ministerio-cultura.png" />
+            </div>
+            <div class="logo">
+              <img src="$request.getContextPath()/images/logos/ministerio-saude.png" />
+            </div>
+            <div class="logo">
+              <img src="$request.getContextPath()/images/logos/ministerio-educacao.png" />
+            </div>
+            <div class="logo">
+              <img src="$request.getContextPath()/images/logos/ministerio-ciencia-tec-inovacao-telco.png" />
+          </div>
+             <div class="logo">
+              <img src="$request.getContextPath()/images/logos/governo-federal.png" />
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,314 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+}
+
+html,body{height:100%;}
+
+body {
+    font-family: Roboto, Verdana, Geneva, sans-serif;
+    font-size: 12px;
+    margin: 0;
+}
+
+h1 {
+    font-size: 13px;
+    padding-bottom: 12px;
+    color: red;
+}
+
+a {
+    color: #00247D;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #00247D;
+    text-decoration: underline;
+}
+
+a:focus, a:hover, a:active {
+    color: #F39800;
+    text-decoration: underline;
+}
+
+.clearfix {
+    overflow: auto;
+}
+
+.login{
+  margin: 0;
+  padding: 10px 0;
+  width: 100%;
+  height: 100%;
+  display: table;
+  background-color: transparent !important;
+}
+
+.loginMain{
+  display: table-row;
+}
+
+.loginMainContainer{
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0 4px;
+}
+
+.loginContentContainer{
+  margin: 0 auto;
+  max-width: 750px;
+  width: 100%;
+  padding: 0 4px;
+}
+
+.loginMainHeader{
+  background: url('../images/topo_cafe.png') no-repeat center;
+  display: block;
+  max-width: 750px;
+  width: 100%;
+  height: 105px;
+  margin: 0 0 6px 0;
+  background-color: #2C4491;
+  -webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+
+.loginMainHeader img{
+  display:none;
+  margin:auto;
+  vertical-align: center;
+}
+
+.loginMainContent{
+  display: block;
+  max-width: 750px;
+  width: 100%;
+  background-color: #D9D9D9;
+  -webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+  padding: 20px 4px 20px;
+  min-height: 300px;
+}
+
+.loginMainContentMessageBox{
+  display: block;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #D9D9D9;
+  -webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+  padding: 0 0 10px 0;
+  text-align: center;
+}
+
+.loginMainContentMessageBox
+.form-error {
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  text-transform: none;
+  font-weight: bold;
+  line-height: 18px;
+  /* color: #B61601; */
+}
+
+
+.loginMainContentMessageBox h2{
+  color: #000;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	text-transform: none;
+	font-weight: 600;
+	line-height: 18px;
+  padding: 0 4px 10px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.loginMainContentMessageBox p{
+  color: #333;
+	font-family: 'Roboto', sans-serif;
+	font-size: 13px;
+	text-transform: none;
+	font-weight: 500;
+	line-height: 18px;
+  padding: 0 4px 0;
+  margin: 0;
+}
+
+.loginMainContentMessageBox section{
+  padding: 0 0 14px;
+}
+
+
+.loginMainContentLoginBox{
+  position: relative;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  max-width: 342px;
+  width: 100%;
+  /* height: 250px; */
+  /* background-color: transparent !important; */
+  /* background-color: #dfdfdf; */
+  text-align: left;
+  padding: 20px 20px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  /* border: 1px solid #fff; */
+}
+
+.loginMainContentLoginBox h2{
+  color: #000;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	text-transform: none;
+	font-weight: 600;
+	line-height: 18px;
+  padding: 0 4px 10px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.loginMainContentLoginBox p{
+  color: #333;
+	font-family: 'Roboto', sans-serif;
+	font-size: 13px;
+	text-transform: none;
+	font-weight: 500;
+	line-height: 18px;
+  padding: 0 4px 4px;
+}
+
+.mainContentLoginBox input{
+  color: #000;
+	font-family: 'Roboto', sans-serif;
+	font-size: 13px;
+	text-transform: none;
+	font-weight: 400;
+  max-width: 300px;
+  width: 100%;
+}
+
+.mainContentLoginBox .checkbox{
+  color: #000;
+	font-family: 'Roboto', sans-serif;
+	font-size: 13px;
+	text-transform: none;
+	font-weight: 400;
+  max-width: 300px;
+  width: 100%;
+}
+
+.loginMainContentLoginBox button{
+  color: #FFF;
+	font-family: 'Roboto', sans-serif;
+	font-size: 13px;
+	text-transform: none;
+	font-weight: 400;
+  background-color: #2C4491;
+}
+
+.loginMainContentLoginBox
+.btn-default {
+    text-shadow: 0 1px 0 #fff;
+    background-image: -webkit-linear-gradient(top,#263A7A 0,#2C4491 100%);
+    background-image: -o-linear-gradient(top,#263A7A 0,#2C4491 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#2C4491));
+    background-image: linear-gradient(to bottom,#263A7A 0,#2C4491 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ff2C4491', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    background-repeat: repeat-x;
+    border-color: #1E3563;
+    border-color: #0E2A64;
+    color: #fff;
+    width: 100%;
+
+}
+
+
+.loginMainContentLoginBox
+.btn-default{
+  margin: 0px 0px 0px 0px;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 1px rgba(0,0,0,.075);
+}
+
+.loginMainContentLoginBox
+.btn-default:focus, .btn-default:hover {
+    background-color: #2C4491;
+    background-position: 0 -15px;
+    color: #fff;
+}
+
+.loginMainContentLoginBox
+.btn-default:hover {
+    margin: 0px 0px 0px 0px;
+    color: #FFF;
+    background-color: #2C4491;
+    border-color: #1E3563;
+}
+
+.loginMainContentLogosBox{
+  display: block;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #D9D9D9;
+  -webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+  padding: 1px 0 1px 0;
+  text-align: center;
+}
+
+.loginMainContentLogosBox
+.image{
+  display: block;
+  /* height: 50px; */
+  margin: 0 auto;
+  padding: 4px 6px;
+  width: 100%;
+}
+
+.loginMainContentLogosBox
+.text{
+  display: block;
+  /* height: 50px; */
+  margin: 0 auto;
+  padding: 4px 6px;
+  width: 100%;
+}
+
+
+.loginMainContentFooterBox{
+  display: block;
+  max-width: 722px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #D9D9D9;
+  -webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+  padding: 0 0 0 0;
+  text-align: center;
+}
+
+.loginMainContentFooterBox
+.logo{
+  display: inline-block;
+  /* height: 50px; */
+  margin: 0 auto;
+  padding: 4px 6px;
+}
