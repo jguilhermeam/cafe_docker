@@ -41,7 +41,7 @@ para gerar certificado do shibboleth - https://wiki.rnp.br/pages/viewpage.action
 
 ### Customizar interface
 
-- editar strings e imagens nos arquivos da pasta messages e edit-webapp
+- editar strings, html e imagens nos arquivos da pasta messages, views e edit-webapp
 
 ### Banco de dados MySQL
 
@@ -67,3 +67,8 @@ mysql -u root -p pcollecta < pcollecta-1.3.7.dump
 - no primeiro acesso do EID2LDAP, altere o usuário do admin do ldap e a senha em Configuração > Servidor LDAP > Alterar
 - caso você já possua uma instalação LDAP, pode simplesmente transferir o conteúdo da pasta /var/lib/ldap para o volume do container do ldap.
 - caso não possua uma instalação LDAP, é necessário alterar a senha do usuário admin e do usuário shibboleth e o domínio no arquivo ldap/files/popula.sh.
+- caso irá puxar os dados de alguma base de dados que não seja MySQL, será preciso modificar o Dockerfile do eid e adicionar o respectivo conector java.
+
+### Dúvidas
+
+em caso de dúvidas entre em contato - jgam@ufam.edu.br
