@@ -308,7 +308,7 @@ CREATE TABLE `PC_DATA_REPOSITORY` (
 --
 
 INSERT INTO `PC_DATA_REPOSITORY` (`ID_DATA_REPOSITORY`, `ID_USER`, `DT_AUDIT`, `VERSION`, `LOGIN_AUDIT`, `NAME`, `DESCRIPTION`, `REPOSITORY_TYPE`, `EXTERNAL_NAME`, `DRIVER`, `URL`, `LOGIN`, `PASSWORD`, `PUBLIC_EXPORTING_MAX_ROWS`, `VISIBILITY`, `DIRECTORY`, `INITIAL_NODE`, `WEB_SERVICE_URL`, `ORG_ACRONYM`, `ORG_ID`, `ORG_CITY`, `ORG_STATE`, `ORG_COUNTRY`, `DS_SCHEMMA`, `DATABASE_VERSION`, `DATABASE_VERSION_TABLE`, `DATABASE_VERSION_FIELD`, `HOST_ADDRESS`, `PORT`, `PROTOCOL_VERSION`, `USE_SSL`) VALUES
-(1, 1, '2012-03-14 15:11:32', 0, 'eid', 'Metadiretório', 'Metadiretório EID', 'S', NULL, 'com.mysql.jdbc.Driver', 'jdbc:mysql://localhost/eid', 'root', NULL, NULL, 'PR', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1.0', '', '', NULL, NULL, NULL, 'N');
+(1, 1, '2012-03-14 15:11:32', 0, 'eid', 'Metadiretório', 'Metadiretório EID', 'S', NULL, 'com.mysql.jdbc.Driver', 'jdbc:mysql://mysql/eid', 'root', NULL, NULL, 'PR', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1.0', '', '', NULL, NULL, NULL, 'N');
 
 -- --------------------------------------------------------
 

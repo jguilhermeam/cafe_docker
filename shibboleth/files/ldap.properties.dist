@@ -3,7 +3,7 @@
 #idp.authn.LDAP.authenticator                   = anonSearchAuthenticator
 idp.authn.LDAP.authenticator                   = bindSearchAuthenticator
 ## Connection properties ##
-idp.authn.LDAP.ldapURL                         = ldap://cafe_ldap:389
+idp.authn.LDAP.ldapURL                         = ldap://ldap:389
 idp.authn.LDAP.useStartTLS                     = false
 idp.authn.LDAP.useSSL                          = false
 idp.authn.LDAP.connectTimeout                  = 3000

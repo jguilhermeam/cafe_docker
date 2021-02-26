@@ -9,8 +9,8 @@ services:
     restart: always
     network_mode: bridge
     links:
-      - cafe_mysql:cafe_mysql
-      - cafe_ldap:cafe_ldap
+      - mysql:mysql
+      - ldap:ldap
     ports:
       - 8080:8080
 
@@ -22,24 +22,24 @@ services:
     restart: always
     network_mode: bridge
     links:
-      - cafe_ldap:cafe_ldap
+      - ldap:ldap
     ports:
       - 443:443
       - 8443:8443
         
-  cafe_ldap:
-    image: cafe_ldap
+  ldap:
+    image: ldap
     build: 
       context: ldap
-    container_name: cafe_ldap
+    container_name: ldap
     restart: always
     network_mode: bridge
     volumes:
       - ldap:/var/lib/ldap
 
-  cafe_mysql:
+  mysql:
     image: mysql:5.7
-    container_name: cafe_mysql
+    container_name: mysql
     restart: always
     network_mode: bridge
     volumes:

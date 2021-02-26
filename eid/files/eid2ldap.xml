@@ -16,7 +16,7 @@
     maxWait="5000"
     username="root"
     password="SENHA_MYSQL"
-    url="jdbc:mysql://cafe_mysql:3306/eid2ldap"
+    url="jdbc:mysql://mysql:3306/eid2ldap"
     maxActive="50"
     factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory"/>
 

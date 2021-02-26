@@ -5,6 +5,8 @@ RUN apt update; \
     apt-get -y install slapd ldap-utils; \
     mkdir -p /var/lib/ldap
 
+EXPOSE 389
+
 COPY files /tmp/
 
 RUN mv /tmp/slapd /etc/default/; \

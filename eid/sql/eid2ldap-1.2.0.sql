@@ -78,7 +78,7 @@ CREATE TABLE TBL_LDAP_SERVER (
 --
 
 INSERT INTO TBL_LDAP_SERVER (idLdap, lastSerialNumber, hostAddress, description, port, login, pssword, protocolVersion, `name`, useSSL) VALUES
-(1, -1, 'localhost', 'Servidor LDAP local', 389, 'cn=admin,dc=INSTITUICAO,dc=br', 'SENHA_ADMIN', 3, 'LDAP local', 'N');
+(1, -1, 'ldap', 'Servidor LDAP local', 389, 'cn=admin,dc=example,dc=com', 'SENHA_ADMIN', 3, 'LDAP local', 'N');
 
 -- --------------------------------------------------------
 
