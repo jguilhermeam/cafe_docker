@@ -9,11 +9,12 @@ $ docker-compose up -d --build
 
 para acessar o eid e o eid2ldap:
 
-EID - http://dominio:8080/eid
-EID2LDAP - http://dominio:8080/eid2ldap
+- EID - http://dominio:8080/eid
+- EID2LDAP - http://dominio:8080/eid2ldap
 
 ### Arquivos que devem ser alterados de acordo com a IFES
 
+```console
 docker-compose.yml (senha root do mysql)
 eid/Dockerfile (timezone)
 eid/files/eid2ldap.xml (senha root do mysql)
@@ -26,17 +27,19 @@ shibboleth/files/ldap.properties.dist (credenciais do ldap)
 shibboleth/files/idp-metadata.xml (dominio, certificados, nome da IFES, nome e email de contato)
 shibboleth/files/saml-nameid.properties.dist (salt)
 shibboleth/files/edit-webapp/images/logo-instituicao.png (logo da IFES)
+```
 
 ### Certificados que devem ser adicionados
 
+```console
 ldap/files/cafe.key (chave privada ssl)
 ldap/files/cafe.crt (chave pública ssl)
 shibboleth/files/credentials/idp.key (chave privada ssl CAFe - RNP)
 shibboleth/files/credentials/idp.crt (chave pública ssl CAFe - RNP)
+```
 
-para gerar certificado ldap - https://wiki.rnp.br/pages/viewpage.action?pageId=69968769
-
-para gerar certificado do shibboleth - https://wiki.rnp.br/pages/viewpage.action?pageId=69964546#Instala%C3%A7%C3%A3odoShibbolethIdP2.X-3.4.6.3.ShibbolethIdP
+- para gerar certificado ldap - https://wiki.rnp.br/pages/viewpage.action?pageId=69968769
+- para gerar certificado do shibboleth - https://wiki.rnp.br/pages/viewpage.action?pageId=69964546#Instala%C3%A7%C3%A3odoShibbolethIdP2.X-3.4.6.3.ShibbolethIdP
 
 
 ### Customizar interface
@@ -45,7 +48,7 @@ para gerar certificado do shibboleth - https://wiki.rnp.br/pages/viewpage.action
 
 ### Banco de dados MySQL
 
-no banco MySQL executar os seguintes comandos para criar e popular os bancos do eid, eid2ldap e pcollecta:
+- no banco MySQL executar os seguintes comandos para criar e popular os bancos do eid, eid2ldap e pcollecta:
 
 ```console
 docker cp eid/sql/eid-1.3.7.dump cafe_mysql:/
