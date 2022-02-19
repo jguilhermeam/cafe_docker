@@ -74,4 +74,4 @@ mysql -u root -p pcollecta < pcollecta-1.3.7.dump
 
 ### Dúvidas
 
-em caso de dúvidas entre em contato - jgam@ufam.edu.br
+em caso de dúvidas entre em contato - joao.guilherme.martinez@gmail.com
